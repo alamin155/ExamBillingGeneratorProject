@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('remark_title');
             $table->integer('remark_status');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ class questionpaperinternalController extends Controller
     public function index(string $id)
     {
         $data=Questionpaperinternal::where('exam_id',$id)->orderBy('cous_id','asc')->paginate(10);
-        $techs=Teacher::orderBy('id','asc')->get();
+        $techs=Teacher::where('teacher_type','1')->orderBy('id','asc')->get();
         $couse=Courses::orderBy('id','asc')->get();
         $exams=Examcommitteebilling::where('id',$id)->get();
         return view('admin.questionpaperinternal.indexq',['data'=>$data,'techs'=>$techs,'couse'=>$couse,'exams'=>$exams,'id' => $id]);
@@ -38,17 +38,11 @@ class questionpaperinternalController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(
-            [
-            'designation'=>'required',
-            'department'=>'required',
-            'address'=>'required',
-        ]
-    );
+        $request->validate([
+        'tech' => 'required|unique:questionpaperinternals,tech_id,NULL,id,cous_id,' . $request->cous,
+        'exam' => 'required',
+       ]);
         $data=new Questionpaperinternal();
-        $data->designation=$request->designation;
-        $data->department=$request->department;
-        $data->address=$request->address;
         $data->tech_id =$request->tech;
         $data->cous_id =$request->cous;
         $data->exam_id =$request->exam;
@@ -79,18 +73,9 @@ class questionpaperinternalController extends Controller
      */
     public function update(Request $request)
     {
-        $request->validate(
-            [
-            'up_designation'=>'required',
-            'up_department'=>'required',
-            'up_address'=>'required',
-        ]
-    );
+        
 
         Questionpaperinternal::where('id',$request->up_id,)->update([
-        'designation'=>$request->up_designation,
-        'department'=>$request->up_department,
-        'address'=>$request->up_address,
         'tech_id' =>$request->up_tech,
         'cous_id' =>$request->up_cous,
 

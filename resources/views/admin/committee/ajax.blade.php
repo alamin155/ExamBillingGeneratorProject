@@ -14,16 +14,13 @@
       {
         e.preventDefault();
         let tech=$('#tech').val();
-        let designation = $('#designation').val();
-        let department = $('#department').val();
-        let address = $('#address').val();
         let remk=$('#remk').val();
         let exam=$('#exam').val();
         //console.log(name+designation+address+mobile+email+bankname+bankaccount+status);
         $.ajax({
           url:"{{route('add.committee')}}",
           method:'post',
-          data:{designation:designation,department:department,address:address,tech:tech,remk:remk,exam:exam,},
+          data:{tech:tech,remk:remk,exam:exam,},
           success:function(res){
             if(res.statu=='success'){
               $('#addModal').modal('hide');
@@ -81,16 +78,14 @@
       {
         e.preventDefault();
         let up_id = $('#up_id').val();
-        let up_designation = $('#up_designation').val();
-        let up_department = $('#up_department').val();
-        let up_address = $('#up_address').val();
+        
         let up_tech=$('#up_tech').val();
         let up_remk = $('#up_remk').val();
         //console.log(name+designation+address+mobile+email+bankname+bankaccount+status);
         $.ajax({
           url:"{{route('update.committee')}}",
           method:'post',
-          data:{up_id:up_id,up_designation:up_designation,up_department:up_department,up_address:up_address,up_tech:up_tech,up_remk:up_remk},
+          data:{up_id:up_id,up_tech:up_tech,up_remk:up_remk},
           success:function(res){
            // $('select[name="depart"]').val(res.data.up_depart);
             if(res.statu=='success'){

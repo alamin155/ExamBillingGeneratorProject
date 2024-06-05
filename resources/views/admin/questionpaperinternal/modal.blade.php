@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" style="margin-top: 60px;">
   <form method="post" action=""  id="addquestionpaperinternalForm">
    @csrf
   <div class="modal-dialog">

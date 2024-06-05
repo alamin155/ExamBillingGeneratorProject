@@ -18,90 +18,12 @@
 <body>
 <div class="w3-sidebar sidebar-offcanvas " style="background-color:sandybrown; width:225px; font-size:13px;" id="mySidebar">
  <ul class="nav ">
-<li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/Allexaminationteacher')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Examination Teacher</span>
-              </a>
-            </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#layoutsSubmenu" aria-expanded="false" aria-controls="layoutsSubmenu">
-                <i class="mdi mdi-arrow-expand-all menu-icon"></i>
-                <span class="menu-title">Examination Teacher</span>
-                <i class="mdi mdi-chevron-down menu-arrow"></i>
-              </a>
-              <div class="collapse" id="layoutsSubmenu">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addexaminationcommitee')}}">Examination Committee<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addmoderationcommitee')}}">Moderation Committee<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addquestionpapersetterinternal')}}">Question Paper Setter (Internal)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Question Paper Setter (External)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examining Answer Scripts<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Third Examination of Scripts<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">
-                   Class Test
-                   <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Laboratory Exam(Teachers)
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Laboratory Exam (Lab Attendant & Lab Technician)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Question Typing & Publishing<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examination Duty (Teachers<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examination Duty (Stuff)
-
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Tabulation
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Scrutinize<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Verification of Results<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#sidebar_layouts" aria-expanded="false" aria-controls="sidebar_layouts">
+              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                 <span class="menu-title">Exam Committee Billing</span>
-                <i class="mdi mdi-chevron-down menu-arrow"></i>
               </a>
-              <div class="collapse" id="sidebar_layouts">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">Add New</a>
-                  </li>
-                  
-                </ul>
-              </div>
             </li>
-
            <li class="nav-item">
               <a class="nav-link" href="{{URL::to('/alldepartment')}}">
                 <i class="mdi mdi-repeat menu-icon"></i>
@@ -147,7 +69,8 @@
           </ul>
         </nav>
       </div>
-     <div class="container card col-6 ml-center " style="background-color:gainsboro;">
+      <div class="container col-6 card-body"  style=" margin-left:230px; width:960px; height:650px; background:khaki; border: 2px solid">
+     <div class="container card col-8 ml-center " style="background-color:khaki; margin-top: 20px;">
       @if($errors->any())
       @foreach($errors->all() as $error)
       <p class="text-danger">{{$error}}</p>
@@ -171,52 +94,107 @@
                                   <label for="exampleInputEmail1">Teacher Designation</label>
                                   <input type="text" class="form-control p-input" name="teacher_designation" aria-describedby="emailHelp" >
                               </div>
-                              <div class="form-group">
-                                  <label for="exampleInputEmail1">Teacher Address</label>
-                                  <input type="text" class="form-control p-input" name="teacher_address" aria-describedby="emailHelp" >
-                              </div>
-                              <div class="form-group">
-                                  <label for="exampleInputEmail1">Teacher Type</label>
-                                  <input type="text" class="form-control p-input" name="teacher_type" aria-describedby="emailHelp" >
-                              </div>
-  
-                             <div class="form-group">
-                                  <label for="exampleInputEmail1">Teacher Image</label>
-                                  <input type="file" class="form-control p-input" name="teacher_image">
-                              </div>
-  
-                              <div class="form-group">
-                                <label for="exampleInputPassword1">Teacher Status</label>
-                                <select class="form-control p-input" name="teacher_status">
-                                  <option>--select Status--</option>
-                                  <option value="1">Active</option>
-                                  <option value="2">Inactive</option>
-                                </select>
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInputPassword1">Select Department</label>
-                                <select class="form-control p-input" name="depart">
+                  <tr>
+                  <td>
+                  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="GrayBlue12">
+                    <tbody>
+                      <tr>
+                      <td width="2%" height="35" align="left" valign="middle" class="bdr01">&nbsp;</td>
+                      <td width="8%" height="35" align="left" valign="middle" class="bdr01">Teacher Image</td>
+                      <td width="34%" height="35" align="left" valign="middle" class="bdr01">
+                      <input type="file" class="form-control p-input" name="teacher_image">
+                      </td>
+                      <td width="2%" height="35" align="left" valign="middle" class="bdr01">&nbsp;</td>
+                      <td width="8%" height="35" align="left" valign="middle" class="bdr01">University Name</td>
+                      <td width="34%" height="35" align="left" valign="middle" class="bdr01">
+                      <input type="text" class="form-control p-input" name="teacher_address" aria-describedby="emailHelp" >
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                  </tr>
+                  <tr>
+                  <td>
+                  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="GrayBlue12">
+                    <tbody>
+                      <tr>
+                      
+                      <td width="2%" height="35" align="left" valign="middle" class="bdr01">&nbsp;</td>
+                      <td width="10%" height="35" align="left" valign="middle" class="bdr01">Department:</td>
+                      <td width="34%" height="35" align="left" valign="middle" class="bdr01">
+                      <select class="form-control p-input" name="depart">
                                   <option>--select department--</option>
                                   @foreach($departments as $depart)
                                   <option value="{{$depart->id}}">{{$depart->department_name}}</option>
                                   @endforeach
                                 </select>
+                      </td>
+                      <td width="2%" height="35" align="left" valign="middle" class="bdr01">&nbsp;</td>
+                      <td width="10%" height="35" align="left" valign="middle" class="bdr01">Teacher Type:</td>
+                      <td width="34%" height="35" align="left" valign="middle" class="bdr01">
+                      <select class="form-control p-input" name="teacher_type">
+                                  <option>--select Teacher Type--</option>
+                                  <option value="1">Interanl</option>
+                                  <option value="2">External</option>     </select>
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                  </tr>
+
+                  
+                      
+                    </tbody>
+                  </table>
+                </td>
+                  </tr>
+                  <div class="row">
+                    <div class="card col-5" style="margin-bottom: 20px;margin-left: 20px;">
+                             <div class="form-group">
+                                <label for="exampleInputPassword1">Mobile</label>
+                               <input type="mobile" maxlength="11" class="form-control p-input" name="mobile">
                               </div>
+                            </div>
+                            <div class="card col-6" style="margin-bottom:20px;margin-left: 20px;">
+                               <div class="form-group" >
+                                <label for="exampleInputPassword1">Email</label>
+                                <input type="email" class="form-control p-input" name="email" >
+                              </div>
+                            </div>
+                    <div class="card col-5" style="margin-bottom: 20px;margin-left: 20px;">
+                             <div class="form-group">
+                                <label for="exampleInputPassword1">Bank Account</label>
+                                <input type="text" maxlength="20" class="form-control p-input" name="bankaccount" aria-describedby="emailHelp" >
+                              </div>
+                            </div>
+                            <div class="card col-6" style="margin-bottom:20px;margin-left: 20px;">
+                               <div class="form-group" >
+                                <label for="exampleInputPassword1">Bank Name</label>
+                                <input type="text" class="form-control p-input" name="bankname" aria-describedby="emailHelp" >
+                              </div>
+                            </div>
+                            <div class="card col-5" style="margin-left: 20px;margin-bottom: 20px;">
+                              <div class="form-group">
+                                <label for="receivedno">Routing No:</label>
+                                <input type="text" class="form-control p-input" name="receivedno" aria-describedby="emailHelp" >
+                              </div>
+                            </div>
+                            <div class="card col-6" style="margin-bottom:20px;margin-left:20px">
+                              <div class="form-group">
+                                <label for="Branchname">Branch Name</label>
+                                <input type="text" class="form-control p-input" name="Branchname" aria-describedby="emailHelp" >
+                              </div>
+                            </div>
+                            </div>
                               <div class="card-footer">
-                              <button type="submit" class="btn btn-success">Submit</button>
+                              <button type="submit" class="btn btn-success" >Add Teacher</button>
                             </div>
                           </form>
                       </div>
                       
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-          <div class="container-fluid">
-            <span class="float">
-                <a href="#">Md.Alamin Gazi</a> &copy; 2023
-            </span>
-          </div>
-        </footer>
+                     </div>
         
 <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('node_modules/popper.js/dist/umd/popper.min.js')}}"></script>

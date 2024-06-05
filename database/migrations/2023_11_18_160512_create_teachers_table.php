@@ -18,9 +18,15 @@ return new class extends Migration
             $table->string('teacher_address');
             $table->string('teacher_image');
             $table->string('teacher_type');
-            $table->integer('teacher_status');
+            $table->bigInteger('mobile')->length(11);
+            $table->string('email')->unique();
+            $table->string('bankaccount');
+            $table->string('bankname');
+            $table->string('receivedno');
+            $table->string('Branchname');
             $table->unsignedBigInteger('dept_id'); // Foreign key column
             $table->foreign('dept_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

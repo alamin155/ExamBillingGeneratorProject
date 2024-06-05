@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('questionpapersetterexternals', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('designation');
-            $table->string('department');
-            $table->string('address');
-            $table->unsignedBigInteger('etech_id'); // Foreign key column
+            $table->unsignedBigInteger('tech_id'); // Foreign key column
             $table->unsignedBigInteger('cous_id');
             $table->unsignedBigInteger('exam_id');
-            $table->foreign('etech_id')->references('id')->on('externalteachers')->onDelete('cascade');
+            $table->unique(['tech_id', 'cous_id']);
+            $table->foreign('tech_id')->references('id')->on('teachers')->onDelete('cascade');
            // $table->integer('deg_id'); // Foreign key column
             $table->foreign('cous_id')->references('id')->on('courses')->onDelete('cascade');
             $table->foreign('exam_id')->references('id')->on('exambillings')->onDelete('cascade');

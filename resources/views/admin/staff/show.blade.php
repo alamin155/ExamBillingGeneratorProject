@@ -22,90 +22,12 @@
 <body>
   <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:225px; font-size:13px;" id="mySidebar">
  <ul class="nav">
-<li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/Allexaminationteacher')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">All Examination Teacher</span>
-              </a>
-            </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#layoutsSubmenu" aria-expanded="false" aria-controls="layoutsSubmenu">
-                <i class="mdi mdi-arrow-expand-all menu-icon"></i>
-                <span class="menu-title"> Examination Teacher</span>
-                <i class="mdi mdi-chevron-down menu-arrow"></i>
-              </a>
-              <div class="collapse" id="layoutsSubmenu">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addexaminationcommitee')}}">Examination Committee<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addmoderationcommitee')}}">Moderation Committee<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addquestionpapersetterinternal')}}">Question Paper Setter (Internal)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Question Paper Setter (External)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examining Answer Scripts<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Third Examination of Scripts<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">
-                   Class Test
-                   <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Laboratory Exam(Teachers)
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Laboratory Exam (Lab Attendant & Lab Technician)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Question Typing & Publishing<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examination Duty (Teachers<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examination Duty (Stuff)
-
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Tabulation
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Scrutinize<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Verification of Results<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#sidebar_layouts" aria-expanded="false" aria-controls="sidebar_layouts">
+              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                 <span class="menu-title">Exam Committee Billing</span>
-                <i class="mdi mdi-chevron-down menu-arrow"></i>
               </a>
-              <div class="collapse" id="sidebar_layouts">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">Add New</a>
-                  </li>
-                  
-                </ul>
-              </div>
             </li>
-
            <li class="nav-item">
               <a class="nav-link" href="{{URL::to('/alldepartment')}}">
                 <i class="mdi mdi-repeat menu-icon"></i>
@@ -152,15 +74,16 @@
         </nav>
       </div>
 
-              <div class="container col-6">
+              <div class="container col-6 card-body"  style=" margin-left:230px; width:1080px; height:650px; background:khaki; border: 2px solid">
+     <div class="container card col-9 ml-center " style="background-color:khaki; margin-top: 20px;">
 
               
-              <h2 class="card-title">Staff</h2>
-              <div class="card-title">
+              <h2 class="card-title" style="text-align:center;">Only One Stuff Info</h2>
+              <div class="card-title" style="width:1000px">
                       <a href="{{URL::to('/allstaff')}}"><button  class="btn btn-primary btn-sm deleteStudentBtn">Show All Staff List</button></a> 
                     </div>
 
-                  <table  class="table table-striped">
+                  <table class="table  table-bordereed" style="border:2px; width:650px ;">
                     <thead >
                       <tr >
                           
@@ -169,6 +92,7 @@
                           <th>Staff Address</th>
                           <th>Staff Image</th>
                           <th>Staff Description</th>
+                          <th>Staff Department</th>
                           <th>Staff Status</th>
                           <th>Created Time</th>
                       </tr>
@@ -181,6 +105,7 @@
                           <td>{{$data->staff_address}}</td>
                           <td><img src="{{asset('image/'.$data->staff_image)}}" height="80" width="100" style="border-radius:50%;"></td>
                           <td>{{$data->staff_description}}</td>
+                          <td>{{$data->department->department_name}}</td>
                           <td>
                             @if($data->staff_status==1) Active @else Inactive @endif</td>
                             

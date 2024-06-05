@@ -25,15 +25,15 @@
 </div>
       <div class="form-group">
         <label for="designation">Teacher Designation</label>
-        <input type="text" name="up_designation" id="up_designation" class="form-control" placeholder="Teacher Designation">
+        <input type="text" name="up_designation" id="up_designation" class="form-control" placeholder="Teacher Designation"readonly>
       </div>
       <div class="form-group">
         <label for="department">Teacher Department</label>
-        <input type="text" name="up_department" id="up_department" class="form-control" placeholder="Teacher Department">
+        <input type="text" name="up_department" id="up_department" class="form-control" placeholder="Teacher Department"readonly>
       </div>
       <div class="form-group">
         <label for="address">Teacher Address</label>
-        <input type="text" name="up_address" id="up_address" class="form-control" placeholder="Teacher Address">
+        <input type="text" name="up_address" id="up_address" class="form-control" placeholder="Teacher Address"readonly>
       </div>
      <div class="form-group">
     <label for="exampleInputPassword1">Select Remark</label>

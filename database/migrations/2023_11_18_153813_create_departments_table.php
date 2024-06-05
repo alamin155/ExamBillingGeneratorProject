@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('department_name');
             $table->integer('department_status');
+            $table->integer('created_by');
             $table->timestamps();
             
 

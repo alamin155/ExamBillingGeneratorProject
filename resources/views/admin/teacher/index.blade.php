@@ -15,93 +15,81 @@
   <link rel="stylesheet" href="bower_components/chartist/dist/chartist.min.css" />
   <link rel="stylesheet" href="css/style.css">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <style type="text/css">
+    .card{
+      margin-top: 30px;
+      border-radius: 25px;
+      background-color: #FFF;
+      width: 330px;
+      margin-left:10px ;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     transition: all 0.3s ease;
+    }
+    .card-content {
+    padding: 20px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+    .card-image{
+    position:relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background: #FFF;
+    padding: 3px;
+    margin-left:80px;
+  }
+  .card-image .card-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius:50%;
+    border: 4px solid #4070F4;
+  }
+  .image-content,
+  .card-content{
+      padding: 10px 14px;
+    }
+  .image-content{
+      position: relative;
+      row-gap: 5px;
+    }
+    .overlay{
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #4070F4;
+      border-radius: 25px 25px 0 25px;
+    }
+     .overlay::before,
+    .overlay::after{
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: -40px;
+      height: 40px;
+      width: 40px;
+      background-color: #4070F4;
+    }
+    .overlay::after{
+      border-radius: 0 25px 0 0;
+      background-color: #FFF;
+    }
+  </style>
 <body>
   <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:220px; font-size:14px;" id="mySidebar">
  <ul class="nav">
-<li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/Allexaminationteacher')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">All Examination Teacher</span>
-              </a>
-            </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#layoutsSubmenu" aria-expanded="false" aria-controls="layoutsSubmenu">
-                <i class="mdi mdi-arrow-expand-all menu-icon"></i>
-                <span class="menu-title">Examination Teacher</span>
-                <i class="mdi mdi-chevron-down menu-arrow"></i>
-              </a>
-              <div class="collapse" id="layoutsSubmenu">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addexaminationcommitee')}}">Examination Committee<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addmoderationcommitee')}}">Moderation Committee<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addquestionpapersetterinternal')}}">Question Paper Setter (Internal)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Question Paper Setter (External)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examining Answer Scripts<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Third Examination of Scripts<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">
-                   Class Test
-                   <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Laboratory Exam(Teachers)
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Laboratory Exam (Lab Attendant & Lab Technician)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Question Typing & Publishing<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examination Duty (Teachers<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examination Duty (Stuff)
-
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Tabulation
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Scrutinize<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Verification of Results<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#sidebar_layouts" aria-expanded="false" aria-controls="sidebar_layouts">
+              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                 <span class="menu-title">Exam Committee Billing</span>
-                <i class="mdi mdi-chevron-down menu-arrow"></i>
               </a>
-              <div class="collapse" id="sidebar_layouts">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">Add New</a>
-                  </li>
-                  
-                </ul>
-              </div>
             </li>
-
            <li class="nav-item">
               <a class="nav-link" href="{{URL::to('/alldepartment')}}">
                 <i class="mdi mdi-repeat menu-icon"></i>
@@ -147,88 +135,69 @@
           </ul>
         </nav>
       </div>
-              <div class="container  col-ml-6 col-7" >
+      <div class="container "  style=" margin-left:230px; width:1100px; height:100%; background:khaki; border: 2px solid">
+      <div class="container col-md-13 card-body" style="width:1090px" >
               
       @if(Session::has('msg'))
       <h2 class="text-danger">{{session('msg')}}</h2>
       @endif
-              <h3>All Internal Teacher List</h3>
+              <h1 style="text-align: center;">All Internal and External Teachers List</h1>
               
   <div class="row">
-  <div class="col-sm-4">
-    <div class="card ">
-      <div class="card-body">
+  <div class="col-sm-4" >
+    <div class=" ">
+      <div class="card-body" style="background-color:khaki;">
         <a href="{{URL::to('teacher/create')}}" class="btn btn-outline-primary btn-lg ">Create New Internal Teacher</a>
       </div>
     </div>
   </div>
   <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
+    <div class="">
+      <div class="card-body" style="background-color:khaki;">
         <a href="{{URL::to('/addexternalteacher')}}" class="btn btn-outline-warning btn-lg">Create New External Teacher</a>
       </div>
     </div>
   </div>
-                  <table  class="table table-striped" style="background-color:gainsboro;">
-                    <thead >
-                      <tr >
-                          
-                          <th>Teacher Name</th>
-                          <th>Teacher Designation</th>
-                          <th>Teacher Address</th>
-                          <th>Teacher Type</th>
-                          <th>Teacher Image</th>
-                          <th>Teacher Status</th>
-                          <th>Action</th>
-                          <th>Teacher Department</th>
-                          <th>Created Time</th>
-                          <th>Show</th>
-                          <th>Delete</th>
-                          <th>Update</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @if($data)
-                      @foreach($data as $d)
-                      <tr>
-                          
-                          <td>{{$d->teacher_name}}</td>
-                          <td>{{$d->teacher_designation}}</td>
-                          <td>{{$d->teacher_address}}</td>
-                          <td>{{$d->teacher_type}}</td>
-                          <td><img src="{{asset('image/'.$d->teacher_image)}}" height="80" width="100" style="border-radius:50%;"></td>
-                          <td>
-                            @if($d->teacher_status==1) Active @else Inactive @endif</td>
-                            <td>
-                            <div class="form-check form-switch">
-                            @if($d->teacher_status==1)
-                            <input type="checkbox" class="form-check-input" id="flexSwitchCheckChecked" checked>
-                            @elseif($d->teacher_status==2)
-                            <input type="checkbox" class="form-check-input" id="flexSwitchCheckDefault">
-                          </div>
-                            @endif
-                          </td>
-                          <td>{{$d->department->department_name}}</td>
-                          
-                          <td>{{$d->created_at}}</td>
-                          
+</div>            <div class="row"> 
 
-                          <td>  
+                  @if($data)
+                  @foreach($data as $d)
+                  
+                  <div class="card">
+                    <div class="image-content">
+                      <span class="overlay"></span>
+                    <div class="card-image"><img src="{{asset('image/'.$d->teacher_image)}} " class="card-img" >
+                    </div>
+                  </div>
+                    <div class="card-content"><h4>Teacher Name: {{$d->teacher_name}}</h4>
+                   <h4>Designation: {{$d->teacher_designation}}</h4>
+                   <h4>Address: {{$d->teacher_address}}</h4>
+                   <h5>Department: {{$d->department->department_name}}</h5>
+                   <h4>Mobile Number: {{$d->mobile}}</h4>
+                   <h4>Email: {{$d->email}}</h4>
+                   <h4>Bank Account: {{$d->bankaccount}}</h4>
+                   <h4>Bank Name: {{$d->bankname}}</h4>
+                   <h5>Bank Received No:{{$d->receivedno}}</h5>
+                   <h4>Branch Name:{{$d->Branchname}}</h4>
+                   <td>  
                             <a href="{{url('teacher/'.$d->id.'/show')}}"><button  class="btn btn-primary btn-sm" id="delete" onclick="confirmation(event)">Show</button></a> 
-                          </td>
-                          <td>  
-                            <a href="{{url('teacher/'.$d->id.'/delete')}}"><button  class="btn btn-danger btn-sm" id="delete" onclick="confirmation(event)">delete</button></a> 
                           </td>
                           <td>
                             <a href="{{url('teacher/'.$d->id.'/edit')}}"><button  class="btn btn-success btn-sm deleteStudentBtn">Update</button></a>
                           </td>
-                      </tr>
-                      @endforeach
-                      @endif
-                    
-                    </tbody>
-                  </table>
+                          <td>  
+                            <a href="{{url('teacher/'.$d->id.'/delete')}}"><button  class="btn btn-danger btn-sm" id="delete" onclick="confirmation(event)">delete</button></a> 
+                          </td>
+                    </div>
+                  </div>
+
+                  @endforeach
+                  @endif
+                 </div>
                 </div>
+                </div>
+              </div>
+
   <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
   <script src="{{asset('node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>

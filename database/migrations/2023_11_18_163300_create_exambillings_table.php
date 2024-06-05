@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('semester');
             $table->integer('year');
+            $table->string('versityname');
             $table->string('exam_year', 4);
             $table->string('addmission_year');
             $table->string('academic_year');
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->foreign('dept_id')->references('id')->on('departments')->onDelete('cascade');
            // $table->integer('deg_id'); // Foreign key column
             $table->foreign('deg_id')->references('id')->on('degrees')->onDelete('cascade');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('degree_name');
             $table->text('degree_description');
             $table->integer('degree_status')->default(1);
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

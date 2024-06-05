@@ -19,93 +19,66 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <style type="text/css">
+    .card{
+      margin-top: 30px;
+      border-radius: 25px;
+      background-color: #FFF;
+      width: 325px;
+      margin-left:20px ;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     transition: all 0.3s ease;
+    }
+    .card-content {
+    padding: 20px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+    
+  .image-content,
+  .card-content{
+      padding: 10px 14px;
+    }
+  .image-content{
+      position: relative;
+      row-gap: 5px;
+    }
+    .overlay{
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 70px;
+      width: 100%;
+      background-color: #1FC981;
+      border-radius: 25px 25px 0 25px;
+    }
+     .overlay::before,
+    .overlay::after{
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: -40px;
+      height: 40px;
+      width: 40px;
+      background-color: #1FC981;
+    }
+    .overlay::after{
+      border-radius: 0 25px 0 0;
+      background-color: #FFF;
+    }
+  </style>
 <body>
   <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:215px; font-size:14px;" id="mySidebar">
  <ul class="nav">
-<li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/Allexaminationteacher')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">All Examination Teacher</span>
-              </a>
-            </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#layoutsSubmenu" aria-expanded="false" aria-controls="layoutsSubmenu">
-                <i class="mdi mdi-arrow-expand-all menu-icon"></i>
-                <span class="menu-title">Examination Teacher</span>
-                <i class="mdi mdi-chevron-down menu-arrow"></i>
-              </a>
-              <div class="collapse" id="layoutsSubmenu">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addexaminationcommitee')}}">Examination Committee<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addmoderationcommitee')}}">Moderation Committee<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addquestionpapersetterinternal')}}">Question Paper Setter (Internal)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Question Paper Setter (External)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examining Answer Scripts<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Third Examination of Scripts<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">
-                   Class Test
-                   <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Laboratory Exam(Teachers)
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Laboratory Exam (Lab Attendant & Lab Technician)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Question Typing & Publishing<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examination Duty (Teachers<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examination Duty (Stuff)
-
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Tabulation
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Scrutinize<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Verification of Results<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#sidebar_layouts" aria-expanded="false" aria-controls="sidebar_layouts">
+              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                 <span class="menu-title">Exam Committee Billing</span>
-                <i class="mdi mdi-chevron-down menu-arrow"></i>
               </a>
-              <div class="collapse" id="sidebar_layouts">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">Add New</a>
-                  </li>
-                  
-                </ul>
-              </div>
             </li>
-
            <li class="nav-item">
               <a class="nav-link" href="{{URL::to('/alldepartment')}}">
                 <i class="mdi mdi-repeat menu-icon"></i>
@@ -151,45 +124,28 @@
           </ul>
         </nav>
       </div>
-      <div class="container  col-ml-6 col-8" >
+      <div class="container " style=" margin-left:215px; width:1100px; height:100%; background:#F6F7F7; border: 2px solid">
               
       @if(Session::has('msg'))
       <h2 class="text-danger">{{session('msg')}}</h2>
       @endif
-              <h2 class="">All Exam Committee List</h2>
-              <div class="">
-                      <a href="{{URL::to('examcommitteebilling/create')}}"><button  class="btn btn-warning btn-sm deleteStudentBtn">Create New Exam Committee Billing</button></a> 
+              <h1 class="" style="text-align:center; color: black;">All Exam Committee Billing List</h1>
+              <div class="" style="width:210px; margin-bottom: 5px;">
+                      <a href="{{URL::to('examcommitteebilling/create')}}"><button  class="btn btn-primary btn-lm ">Add Exam Billing Committee</button></a> 
                     </div>
-
-                  <table  class="table table-striped" style="background-color:gainsboro;">
-                    <thead >
-                      <tr >
-                          
-                          <th>Department Name</th>
-                          <th>Degree Name</th>
-                          <th>Semester</th>
-                          <th>Year</th>
-                          <th>Exam Year</th>
-                          <th>Admission Year</th>
-                          <th>Academic Year</th>
-                          <th>Exam Start Date</th>
-                          <th>Exam End Date</th>
-                          <th>Status</th>
-                          <th>Action</th>
-                          <th>Created Time</th>
-                          <th>Show</th>
-                          <th>Delete</th>
-                          <th>Update</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @if($data)
-                      @foreach($data as $d)
-                      <tr>
-                          <td>{{$d->department->department_name}}</td>
-                          <td>{{$d->degree->degree_name}}</td>
-                          <td>
-                            @if($d->semester == 1 ) 
+                  <div class="row"> 
+                  @if($data)
+                  @foreach($data as $d)
+                  <div class="card">
+                    <div class="image-content">
+                      <span class="overlay"><h4 style="margin-left:35px;">{{$d->versityname}}</h4></span>
+                    <div class="card-image"><img class="card-img" >
+                    </div>
+                  </div>
+                    <div class="card-content" style="margin-top: 25px;">
+                   <h4>Department: {{$d->department->department_name}}</h4>
+                   <h4>Degree: {{$d->degree->degree_name}}</h4>
+                   <h5>Semester: @if($d->semester == 1 ) 
                             1st 
                             @elseif($d->semester == 2) 
                             2nd 
@@ -199,9 +155,8 @@
                             4th 
                             @else 
                             5th
-                            @endif 
-                          </td>
-                          <td>@if($d->year == 1 ) 
+                            @endif </h5>
+                            <h5>Year: @if($d->year == 1 ) 
                             1st 
                             @elseif($d->year == 2) 
                             2nd 
@@ -211,10 +166,8 @@
                             4th 
                             @else 
                             5th
-                            @endif </td>
-                          </td>
-                          <td>
-                            @if($d->exam_year == 1 ) 
+                            @endif </h5>
+                            <h5>Exam Year: @if($d->exam_year == 1 ) 
                             2013 
                             @elseif($d->exam_year == 2) 
                             2014 
@@ -250,10 +203,8 @@
                             2029  
                             @else 
                             2030
-                            @endif 
-                          </td>
-                          <td>
-                            @if($d->addmission_year == 1 ) 
+                            @endif </h5>
+                            <h5>Addmission Year: @if($d->addmission_year == 1 ) 
                             2012-2013 
                             @elseif($d->addmission_year == 2) 
                             2013-2014 
@@ -279,10 +230,8 @@
                             2023-2024   
                             @else 
                             2024-2025
-                            @endif 
-                          </td>
-                          <td>
-                            @if($d->academic_year == 1 ) 
+                            @endif </h5>
+                            <h5>Academic Year: @if($d->academic_year == 1 ) 
                             2012-2013 
                             @elseif($d->academic_year == 2) 
                             2013-2014 
@@ -308,39 +257,28 @@
                             2023-2024   
                             @else 
                             2024-2025
-                            @endif 
-                          </td>
-                          <td>{{$d->exam_start_date}}</td>
-                          <td>{{$d->exam_end_date}}</td>
-                          <td>
-                            @if($d->staff_status==1) Active @else Inactive @endif</td>
-                            <td>
-                            <div class="form-check form-switch">
-                            @if($d->staff_status==1)
-                            <input type="checkbox" class="form-check-input" id="flexSwitchCheckChecked" checked>
-                            @elseif($d->staff_status==2)
-                            <input type="checkbox" class="form-check-input" id="flexSwitchCheckDefault">
-                          </div>
-                            @endif
-                          </td>
-                          <td>{{$d->created_at}}</td>
-                          <td>  
-                            <a href="{{url('examcommitteebilling/'.$d->id.'/show')}}"><button  class="btn btn-primary btn-sm" id="delete" onclick="confirmation(event)">View</button></a> 
+                            @endif</h5>
+                            <h5>Exam Start Date:{{$d->exam_start_date}}</h5>
+                            <h5>Exam End Date:{{$d->exam_end_date}}</h5>
+                   <h4>Created Time:{{$d->created_at}}</h4>
+                   <td style="margin-left: 20px;">  
+                            <a href="{{url('examcommitteebilling/'.$d->id.'/show')}}"><button  class="btn btn-primary btn-lm" id="delete" onclick="confirmation(event)">View</button></a> 
                           </td>
 
-                          <td>  
-                            <a href="{{url('examcommitteebilling/'.$d->id.'/delete')}}"><button  class="btn btn-danger btn-sm">delete</button></a> 
+                          <td >  
+                            <a href="{{url('examcommitteebilling/'.$d->id.'/delete')}}"><button  class="btn btn-danger btn-lm">delete</button></a> 
                           </td>
                           <td>
-                            <a href="{{url('examcommitteebilling/'.$d->id.'/edit')}}"><button  class="btn btn-success btn-sm deleteStudentBtn">Update</button></a>
+                            <a href="{{url('examcommitteebilling/'.$d->id.'/edit')}}"><button  class="btn btn-success btn-lm deleteStudentBtn">Update</button></a>
                           </td>
-                      </tr>
-                      @endforeach
-                      @endif
-                    
-                    </tbody>
-                  </table>
+                    </div>
+                  </div>
+                  @endforeach
+                  @endif
+                 </div>
                 </div>
+              </div>
+                
                 
                     
  <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>

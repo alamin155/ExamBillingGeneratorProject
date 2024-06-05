@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('committees', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('designation');
-            $table->string('department');
-            $table->string('address');
             $table->unsignedBigInteger('tech_id'); // Foreign key column
             $table->unsignedBigInteger('remk_id');
             $table->unsignedBigInteger('exam_id');
+            $table->unique(['tech_id', 'exam_id']);
             $table->foreign('tech_id')->references('id')->on('teachers')->onDelete('cascade');
            // $table->integer('deg_id'); // Foreign key column
             $table->foreign('remk_id')->references('id')->on('remarks')->onDelete('cascade');

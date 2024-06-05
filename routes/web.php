@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginWithGoogleController;
-use App\Http\Controllers\AddexaminationteacherController;
-use App\Http\Controllers\AllexaminationteacherController;
-use App\Http\Controllers\QuestionpapersetterinternalController;
-use App\Http\Controllers\ModerationCommitteeController;
 use App\Http\Controllers\departmentController;
 use App\Http\Controllers\teacherController;
 use App\Http\Controllers\degreeController;
@@ -17,7 +13,18 @@ use App\Http\Controllers\externalteacherController;
 use App\Http\Controllers\committeeController;
 use App\Http\Controllers\questionpaperinternalController;
 use App\Http\Controllers\questionpapersetterexternalController;
-use App\Http\Controllers\examininganswerscriptController;
+use App\Http\Controllers\LaboratoryexamlabattendantlabtechnicianController;
+use App\Http\Controllers\classtestController;
+use App\Http\Controllers\thirdexaminationscriptController;
+use App\Http\Controllers\Moderationcontroller;
+use App\Http\Controllers\ExaminationdutystuffController;
+use App\Http\Controllers\ExaminationdutyteacherController;
+use App\Http\Controllers\laboratoryexamteacherController;
+use App\Http\Controllers\QuestiontypingpublishingController;
+use App\Http\Controllers\TabulationController;
+use App\Http\Controllers\ScrutinizeController;
+use App\Http\Controllers\VerificationofresultController;
+use App\Http\Controllers\preparedController;
 use App\Models\Teacher;
 
 //use App\Models\department;
@@ -47,18 +54,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/googleLogin', [App\Http\Controllers\LoginWithGoogleController::class, 'googleLogin'])->name('google-Login');
 Route::get('/auth/google/callback', [App\Http\Controllers\LoginWithGoogleController::class, 'googleHandle']);
-//Examination Committee
-Route::get('/addexaminationcommitee', [App\Http\Controllers\AddexaminationteacherController::class, 'commitee']);
-Route::post('/save-examinationcommitee', [App\Http\Controllers\AddexaminationteacherController::class, 'saveexaminationcommitee']);
-
-Route::get('/Allexaminationteacher', [App\Http\Controllers\AllexaminationteacherController::class, 'allexaminationteacher']);
-
-//Moderation Committee
-Route::get('/addmoderationcommitee', [App\Http\Controllers\ModerationCommitteeController::class, 'moderationcommitee']);
-Route::post('/save-moderationcommitee', [App\Http\Controllers\ModerationCommitteeController::class, 'savemoderationcommitee']);
-//Questionpapersetterinternal
-Route::get('/addquestionpapersetterinternal', [App\Http\Controllers\QuestionpapersetterinternalController::class, 'questionpapersetterinternal']);
-Route::post('/save-questionpapersetterinternal', [App\Http\Controllers\QuestionpapersetterinternalController::class, 'savequestionpapersetterinternal']);
 
 //Department
 Route::get('/alldepartment', [App\Http\Controllers\departmentController::class, 'index']);
@@ -93,22 +88,105 @@ Route::post('committee/strore', [App\Http\Controllers\committeeController::class
 Route::post('/update-committee', [App\Http\Controllers\committeeController::class,'update'])->name('update.committee');
 Route::post('/committee', [App\Http\Controllers\committeeController::class,'destroy'])->name('delete.committee');
 Route::get('/search-committee', [App\Http\Controllers\committeeController::class,'searchcommittee'])->name('search.committee');
+
+//Moderation 
+Route::get('moderation/{id}/show', [App\Http\Controllers\Moderationcontroller::class, 'index']);
+Route::post('moderation/strore', [App\Http\Controllers\Moderationcontroller::class, 'store'])->name('add.moderation');
+Route::post('/update-moderation', [App\Http\Controllers\Moderationcontroller::class,'update'])->name('update.moderation');
+Route::post('/moderation', [App\Http\Controllers\Moderationcontroller::class,'destroy'])->name('delete.moderation');
+Route::get('/search-moderation', [App\Http\Controllers\Moderationcontroller::class,'searchmoderation'])->name('search.moderation');
+
+
 //Question Paper Internal
 Route::get('questionpaperinternal/{id}/show', [App\Http\Controllers\questionpaperinternalController::class, 'index']);
 Route::post('questionpaperinternal/strore', [App\Http\Controllers\questionpaperinternalController::class, 'store'])->name('add.questionpaperinternal');
 Route::post('/update-questionpaperinternal', [App\Http\Controllers\questionpaperinternalController::class,'update'])->name('update.questionpaperinternal');
 Route::post('/questionpaperinternal', [App\Http\Controllers\questionpaperinternalController::class,'destroy'])->name('delete.questionpaperinternal');
 
+
 //Question Paper Setter External
 Route::get('questionpapersetterexternal/{id}/show', [App\Http\Controllers\questionpapersetterexternalController::class, 'index']);
 Route::post('questionpapersetterexternal/strore', [App\Http\Controllers\questionpapersetterexternalController::class, 'store'])->name('add.questionpapersetterexternal');
 Route::post('/update-questionpapersetterexternal', [App\Http\Controllers\questionpapersetterexternalController::class,'update'])->name('update.questionpapersetterexternal');
 Route::post('/questionpapersetterexternal', [App\Http\Controllers\questionpapersetterexternalController::class,'destroy'])->name('delete.questionpapersetterexternal');
+
 //Examining Answer Scripts
 Route::get('examininganswerscript/{id}/show', [App\Http\Controllers\examininganswerscriptController::class, 'index']);
 Route::post('examininganswerscript/strore', [App\Http\Controllers\examininganswerscriptController::class, 'store'])->name('add.examininganswerscript');
 Route::post('/update-examininganswerscript', [App\Http\Controllers\examininganswerscriptController::class,'update'])->name('update.examininganswerscript');
 Route::post('/examininganswerscript', [App\Http\Controllers\examininganswerscriptController::class,'destroy'])->name('delete.examininganswerscript');
+
+//Third Examination Scripts
+Route::get('thirdexaminationscript/{id}/show', [App\Http\Controllers\thirdexaminationscriptController::class, 'index']);
+Route::post('thirdexaminationscript/strore', [App\Http\Controllers\thirdexaminationscriptController::class, 'store'])->name('add.thirdexaminationscript');
+Route::post('/update-thirdexaminationscript', [App\Http\Controllers\thirdexaminationscriptController::class,'update'])->name('update.thirdexaminationscript');
+Route::post('/thirdexaminationscript', [App\Http\Controllers\thirdexaminationscriptController::class,'destroy'])->name('delete.thirdexaminationscript');
+
+//Class Test
+Route::get('classtest/{id}/show', [App\Http\Controllers\classtestController::class, 'index']);
+Route::post('classtest/strore', [App\Http\Controllers\classtestController::class, 'store'])->name('add.classtest');
+Route::post('/update-classtest', [App\Http\Controllers\classtestController::class,'update'])->name('update.classtest');
+Route::post('/classtest', [App\Http\Controllers\classtestController::class,'destroy'])->name('delete.classtest');
+
+//Laboratory Exam Teacher
+Route::get('laboratoryexamteacher/{id}/show', [App\Http\Controllers\laboratoryexamteacherController::class, 'index']);
+Route::post('laboratoryexamteacher/strore', [App\Http\Controllers\laboratoryexamteacherController::class, 'store'])->name('add.laboratoryexamteacher');
+Route::post('/update-laboratoryexamteacher', [App\Http\Controllers\laboratoryexamteacherController::class,'update'])->name('update.laboratoryexamteacher');
+Route::post('/laboratoryexamteacher', [App\Http\Controllers\laboratoryexamteacherController::class,'destroy'])->name('delete.laboratoryexamteacher');
+
+//Laboratory Exam Lab Attendant Lab Technician
+Route::get('laboratoryexamlabattendantlabtechnician/{id}/show', [App\Http\Controllers\LaboratoryexamlabattendantlabtechnicianController::class, 'index']);
+Route::post('laboratoryexamlabattendantlabtechnician/strore', [App\Http\Controllers\LaboratoryexamlabattendantlabtechnicianController::class, 'store'])->name('add.laboratoryexamlabattendantlabtechnician');
+Route::post('/update-laboratoryexamlabattendantlabtechnician', [App\Http\Controllers\LaboratoryexamlabattendantlabtechnicianController::class,'update'])->name('update.laboratoryexamlabattendantlabtechnician');
+Route::post('/laboratoryexamlabattendantlabtechnician', [App\Http\Controllers\LaboratoryexamlabattendantlabtechnicianController::class,'destroy'])->name('delete.laboratoryexamlabattendantlabtechnician');
+
+//Examination Duty Stuff
+Route::get('examinationdutystuff/{id}/show', [App\Http\Controllers\ExaminationdutystuffController::class, 'index']);
+Route::post('examinationdutystuff/strore', [App\Http\Controllers\ExaminationdutystuffController::class, 'store'])->name('add.examinationdutystuff');
+Route::post('/update-examinationdutystuff', [App\Http\Controllers\ExaminationdutystuffController::class,'update'])->name('update.examinationdutystuff');
+Route::post('/examinationdutystuff', [App\Http\Controllers\ExaminationdutystuffController::class,'destroy'])->name('delete.examinationdutystuff');
+
+
+//questiontypingpublishingController
+Route::get('questiontypingpublishing/{id}/show', [App\Http\Controllers\QuestiontypingpublishingController::class, 'index']);
+Route::post('questiontypingpublishing/strore', [App\Http\Controllers\QuestiontypingpublishingController::class, 'store'])->name('add.questiontypingpublishing');
+Route::post('/update-questiontypingpublishing', [App\Http\Controllers\QuestiontypingpublishingController::class,'update'])->name('update.questiontypingpublishing');
+Route::post('/questiontypingpublishing', [App\Http\Controllers\QuestiontypingpublishingController::class,'destroy'])->name('delete.questiontypingpublishing');
+
+
+//Examination Duty Teacher
+Route::get('examinationdutyteacher/{id}/show', [App\Http\Controllers\ExaminationdutyteacherController::class, 'index']);
+Route::post('examinationdutyteacher/strore', [App\Http\Controllers\ExaminationdutyteacherController::class, 'store'])->name('add.examinationdutyteacher');
+Route::post('/update-examinationdutyteacher', [App\Http\Controllers\ExaminationdutyteacherController::class,'update'])->name('update.examinationdutyteacher');
+Route::post('/examinationdutyteacher', [App\Http\Controllers\ExaminationdutyteacherController::class,'destroy'])->name('delete.examinationdutyteacher');
+
+//Tabulation
+Route::get('tabulation/{id}/show', [App\Http\Controllers\TabulationController::class, 'index']);
+Route::post('tabulation/strore', [App\Http\Controllers\TabulationController::class, 'store'])->name('add.tabulation');
+Route::post('/update-tabulation', [App\Http\Controllers\TabulationController::class,'update'])->name('update.tabulation');
+Route::post('/tabulation', [App\Http\Controllers\TabulationController::class,'destroy'])->name('delete.tabulation');
+
+
+//Scrutinize
+Route::get('scrutinize/{id}/show', [App\Http\Controllers\ScrutinizeController::class, 'index']);
+Route::post('scrutinize/strore', [App\Http\Controllers\ScrutinizeController::class, 'store'])->name('add.scrutinize');
+Route::post('/update-scrutinize', [App\Http\Controllers\ScrutinizeController::class,'update'])->name('update.scrutinize');
+Route::post('/scrutinize', [App\Http\Controllers\ScrutinizeController::class,'destroy'])->name('delete.scrutinize');
+
+//preparedController
+Route::get('prepared/{id}/show', [App\Http\Controllers\preparedController::class, 'index']);
+Route::post('prepared/strore', [App\Http\Controllers\preparedController::class, 'store'])->name('add.prepared');
+Route::post('/prepared', [App\Http\Controllers\preparedController::class,'destroy'])->name('delete.prepared');
+
+
+
+//Verificationofresult
+Route::get('verificationofresult/{id}/show', [App\Http\Controllers\VerificationofresultController::class, 'index']);
+Route::post('verificationofresult/strore', [App\Http\Controllers\VerificationofresultController::class, 'store'])->name('add.verificationofresult');
+Route::post('/update-verificationofresult', [App\Http\Controllers\VerificationofresultController::class,'update'])->name('update.verificationofresult');
+Route::post('/verificationofresult', [App\Http\Controllers\VerificationofresultController::class,'destroy'])->name('delete.verificationofresult');
+
+
 //Degree
 Route::get('/alldegree', [App\Http\Controllers\degreeController::class, 'index']);
 Route::get('degree/create', [App\Http\Controllers\degreeController::class, 'create']);
@@ -147,12 +225,19 @@ Route::put('update_remark/{id}', [App\Http\Controllers\remarkController::class,'
 
 //Exam Committee Billing
 Route::get('/allexamcommitteebilling', [App\Http\Controllers\examcommitteebillingController::class, 'index']);
+
 Route::get('examcommitteebilling/create', [App\Http\Controllers\examcommitteebillingController::class, 'create']);
 Route::get('examcommitteebilling/{id}/show', [App\Http\Controllers\examcommitteebillingController::class,'show']);
 Route::post('examcommitteebilling/strore', [App\Http\Controllers\examcommitteebillingController::class, 'store']);
 Route::get('examcommitteebilling/{id}/delete', [App\Http\Controllers\examcommitteebillingController::class,'destroy']);
 Route::get('examcommitteebilling/{id}/edit', [App\Http\Controllers\examcommitteebillingController::class,'edit']);
 Route::put('update_examcommitteebilling/{id}', [App\Http\Controllers\examcommitteebillingController::class,'update']);
+Route::get('download/{id}/show', [App\Http\Controllers\examcommitteebillingController::class, 'generatehtml']);
+
+Route::get('document/{id}/show', [App\Http\Controllers\examcommitteebillingController::class, 'documentPdf']);
+
+// Total Count Route
+Route::get('/home', [App\Http\Controllers\teacherController::class, 'teacherlist']);
 
 
-Route::get('/download', [App\Http\Controllers\AllexaminationteacherController::class, 'generatePdf']);
+

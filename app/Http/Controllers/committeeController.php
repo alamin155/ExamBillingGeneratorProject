@@ -36,6 +36,7 @@ class committeeController extends Controller
     public function create()
     {
         $data=Teacher::orderBy('id','asc')->get();
+        $data2=Externalteacher::orderBy('id','asc')->get();
         $data1=Remark::orderBy('id','asc')->get();
         $data3=Examcommitteebilling::orderBy('id','asc');
         return view('admin.committee.create',['teachers'=>$data,'remarks'=>$data1,'exambillings'=>$data3]);
@@ -46,23 +47,19 @@ class committeeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(
-            [
-            'designation'=>'required',
-            'department'=>'required',
-            'address'=>'required',
-        ]
-    );
+        $request->validate([
+        'tech' => 'required|unique:committees,tech_id,NULL,id,exam_id,' . $request->exam,
+        'remk' => 'required',
+        'exam' => 'required',
+       ]);
+    
         $data=new Committee();
-        $data->designation=$request->designation;
-        $data->department=$request->department;
-        $data->address=$request->address;
         $data->tech_id =$request->tech;
         $data->remk_id =$request->remk;
         $data->exam_id =$request->exam;
         $data->save();
         return response()->json([
-            'statu'=>'success',
+            'statu'=>'success','msg',
         ]);
     }
 
@@ -88,18 +85,9 @@ class committeeController extends Controller
      */
     public function update(Request $request)
     {
-        $request->validate(
-            [
-            'up_designation'=>'required',
-            'up_department'=>'required',
-            'up_address'=>'required',
-        ]
-    );
+        
 
         Committee::where('id',$request->up_id,)->update([
-        'designation'=>$request->up_designation,
-        'department'=>$request->up_department,
-        'address'=>$request->up_address,
         'tech_id' =>$request->up_tech,
         'remk_id' =>$request->up_remk,
 

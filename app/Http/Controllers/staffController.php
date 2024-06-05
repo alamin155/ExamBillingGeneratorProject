@@ -4,15 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Staff;
+use App\Models\Department;
+use App\Models\Committee;
+use Auth;
 
 class staffController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    private function getMyBling() {
+    $data = Staff::orderBy('id', 'asc')
+        ->where('created_by', Auth::user()->id)
+        ->pluck('id'); // Use pluck() to get only the 'id' column
+
+    $data2 = Committee::select('committees.exam_id')
+        ->join('teachers', 'committees.tech_id', '=', 'teachers.id')
+        ->where('teachers.email', Auth::user()->email)
+        ->pluck('committees.exam_id'); // Use pluck() to get only the 'exam_id' column
+
+    return array_merge($data->toArray(), $data2->toArray()); // Merge both arrays
+}
     public function index()
     {
-        $data=Staff::orderBy('id','asc')->get();
+        $ids = $this->getMyBling(); // Retrieve IDs from the method
+    //Session::put('ids', $ids); // Store the IDs in the session variable without quotes around 'ids'
+
+        $data = Staff::whereIn('id', $ids)->orderBy('id', 'asc')->get();
         return view('admin.staff.index',['data'=>$data]);
     }
 
@@ -21,8 +39,9 @@ class staffController extends Controller
      */
     public function create()
     {
-        $data=Staff::orderBy('id','desc')->get();
-        return view('admin.staff.create',['staffs'=>$data]);
+        $data=Department::orderBy('id','asc')->get();
+        return view('admin.staff.create',['departments'=>$data]);
+        
     }
 
     /**
@@ -31,7 +50,7 @@ class staffController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'staff_name'=>'required',
+            'staff_name' => 'required|unique:staffs,staff_name',
             'staff_designation'=>'required',
             'staff_address'=>'required',
             'staff_description'=>'required',
@@ -52,6 +71,8 @@ class staffController extends Controller
         $data->staff_description=$request->staff_description;
         $data->staff_image=$renamePhoto;
         $data->staff_status=$request->staff_status;
+        $data->dept_id =$request->depart;
+        $data->created_by=Auth::user()->id;
         $data->save();
         
         return redirect('staff/create')->with('msg','Staff created Successfuly!');
@@ -71,8 +92,9 @@ class staffController extends Controller
      */
     public function edit(string $id)
     {
+         $departs=Department::orderBy('id','desc')->get();
          $data=Staff::find($id);
-        return view('admin.staff.edit',['data'=>$data]);
+        return view('admin.staff.edit',['data'=>$data,'departs'=>$departs]);
     }
 
     /**
@@ -108,6 +130,7 @@ class staffController extends Controller
         $data->staff_image=$renamePhoto;
         $data->staff_description=$request->staff_description;
         $data->staff_status=$request->staff_status;
+        $data->dept_id =$request->depart;
         $data->update();
         return redirect('staff/'.$id.'/edit')->with('msg','Staff updated Successfuly!');
     }

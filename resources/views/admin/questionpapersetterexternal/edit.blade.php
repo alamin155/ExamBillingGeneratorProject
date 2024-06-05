@@ -27,22 +27,22 @@
     <label for="exampleInputPassword1">Select Teacher</label>
     <select class="form-control p-input" name="tech" id="up_tech">
       @foreach($etechs as $tech)
-      <option @if($tech->tech_id==$tech->id) selected @endif value="{{$tech->id}}">{{$tech->name}}</option>
+      <option @if($tech->tech_id==$tech->id) selected @endif value="{{$tech->id}}">{{$tech->teacher_name}}</option>
       @endforeach
                                             
     </select>
 </div>
       <div class="form-group">
         <label for="designation">Teacher Designation</label>
-        <input type="text" name="up_designation" id="up_designation" class="form-control" placeholder="Teacher Designation">
+        <input type="text" name="up_designation" id="up_designation" class="form-control" placeholder="Teacher Designation" readonly>
       </div>
       <div class="form-group">
         <label for="department">Teacher Department</label>
-        <input type="text" name="up_department" id="up_department" class="form-control" placeholder="Teacher Department">
+        <input type="text" name="up_department" id="up_department" class="form-control" placeholder="Teacher Department" readonly>
       </div>
       <div class="form-group">
         <label for="address">Teacher Address</label>
-        <input type="text" name="up_address" id="up_address" class="form-control" placeholder="Teacher Address">
+        <input type="text" name="up_address" id="up_address" class="form-control" placeholder="Teacher Address" readonly>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

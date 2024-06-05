@@ -22,10 +22,10 @@ class Externalteacher extends Model
     {
         return $this->belongsTo(Department::class,'dept_id');
     }
-    public function questionpapersetterexternal()
-    {
-        return $this->hasMany(Questionpapersetterexternal::class,'etech_id');
-    }
+   // public function questionpapersetterexternal()
+    //{
+        //return $this->hasMany(Questionpapersetterexternal::class,'etech_id');
+    //}
     public function examininganswerscript()
     {
         return $this->hasMany(Examininganswerscript::class,'etech_id');

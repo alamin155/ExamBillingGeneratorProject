@@ -147,21 +147,21 @@
       })
       
       //delete external teacher
-      $(document).on('click','.delete_teacher',function(e)
+      $(document).on('click','.delete_examcommitteebilling',function(e)
       {
         e.preventDefault();
-        let teacher_id = $(this).data('id');
+        let exam_id = $(this).data('id');
         
         if(confirm('Are you sure to delete teacher')){
           $.ajax({
-          url:"{{route('delete.teacher')}}",
+          url:"{{route('delete.examcommitteebilling')}}",
           method:'post',
-          data:{teacher_id:teacher_id},
+          data:{exam_id:exam_id},
           success:function(res){
             if(res.statu=='success'){
 
               $('.table').load(location.href+' .table');
-              Command: toastr["success"]("External Teacher Deleted Successfully!","success")
+              Command: toastr["success"]("Exam Biling Deleted Successfully!","success")
 
                toastr.options = {
               "closeButton": false,

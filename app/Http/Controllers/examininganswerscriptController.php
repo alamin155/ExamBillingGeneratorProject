@@ -8,6 +8,7 @@ use App\Models\Questionpapersetterexternal;
 use App\Models\Teacher;
 use App\Models\Externalteacher;
 use App\Models\Examininganswerscript;
+use App\Models\Department;
 use App\Models\Examcommitteebilling;
 use DB;
 use Session;
@@ -22,13 +23,19 @@ class examininganswerscriptController extends Controller
         $data=Examininganswerscript::where('exam_id',$id)->orderBy('cous_id','asc')->paginate(10);
         $internals=Questionpaperinternal::orderBy('id','asc')->get();
         $externals=Questionpapersetterexternal::orderBy('id','asc')->get();
-       $exams=Examcommitteebilling::where('id',$id)->get();
+        $couse=Courses::orderBy('id','asc')->get();
+        //$couse=Questionpaperinternal::join('questionpapersetterexternals', 'questionpaperinternals.cous_id', '=', 'questionpapersetterexternals.cous_id')
+    //->select('questionpaperinternals.*', 'questionpapersetterexternals.*')
+    //->get();
+
+        $exams=Examcommitteebilling::where('id',$id)->get();
+        return view('admin.examininganswerscript.index',['data'=>$data,'internals'=>$internals,'couse'=>$couse,'exams'=>$exams,'externals'=>$externals,'id' => $id]);
        
-       $courses = Questionpaperinternal::with(['questionpapersetterexternal', 'questionpapersetterexternal.Externalteacher'])
-    ->join('questionpapersetterexternals', 'questionpaperinternals.cous_id', '=', 'questionpapersetterexternals.cous_id')
-    ->join('externalteachers', 'questionpapersetterexternals.id', '=', 'externalteachers.id')
-    ->select('questionpaperinternals.*', 'questionpapersetterexternals.*', 'externalteachers.*')
-    ->get();
+       //$courses = Questionpaperinternal::with(['questionpapersetterexternal', 'questionpapersetterexternal.Externalteacher'])
+    //->join('questionpapersetterexternals', 'questionpaperinternals.cous_id', '=', 'questionpapersetterexternals.cous_id')
+    //->join('externalteachers', 'questionpapersetterexternals.id', '=', 'externalteachers.id')
+    //->select('questionpaperinternals.*', 'questionpapersetterexternals.*', 'externalteachers.*')
+    //->get();
         
 
 
@@ -53,10 +60,6 @@ class examininganswerscriptController extends Controller
         //->get();
 //couse=Courses::orderBy('id','asc')->get();
 
-
-
-        
-        return view('admin.examininganswerscript.index',['data'=>$data,'internals'=>$internals,'externals'=>$externals,'courses'=>$courses,'exams'=>$exams,'id' => $id]);
     }
 
     /**
@@ -85,7 +88,6 @@ class examininganswerscriptController extends Controller
         $data->external_id =$request->external;
         $data->cous_id=$request->cous;
         $data->exam_id=$request->exam;
-
         
         $data->save();
         return response()->json([
@@ -113,9 +115,19 @@ class examininganswerscriptController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+         Examininganswerscript::where('id',$request->up_id,)->update([
+        'internal_id' =>$request->up_internal,
+        'external_id' =>$request->up_external,
+        'cous_id' =>$request->up_cous,
+        'noscript' =>$request->up_noscript,
+
+        ]);
+
+        return response()->json([
+            'statu'=>'success',
+        ]);
     }
 
     /**

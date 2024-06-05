@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Committee;
+use App\Models\ModerationModel;
 
 class Remark extends Model
 {
@@ -14,5 +15,9 @@ class Remark extends Model
     public function remark()
     {
         return $this->hasMany(Committee::class,'remk_id');
+    }
+    public function moderation()
+    {
+        return $this->hasMany(ModerationModel::class,'remk_id');
     }
 }

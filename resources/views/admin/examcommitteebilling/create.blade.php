@@ -18,90 +18,12 @@
 <body>
   <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:225px; font-size:13px;" id="mySidebar">
  <ul class="nav">
-<li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/Allexaminationteacher')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">All Examination Teacher</span>
-              </a>
-            </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#layoutsSubmenu" aria-expanded="false" aria-controls="layoutsSubmenu">
-                <i class="mdi mdi-arrow-expand-all menu-icon"></i>
-                <span class="menu-title">Examination Teacher</span>
-                <i class="mdi mdi-chevron-down menu-arrow"></i>
-              </a>
-              <div class="collapse" id="layoutsSubmenu">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addexaminationcommitee')}}">Examination Committee<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addmoderationcommitee')}}">Moderation Committee<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/addquestionpapersetterinternal')}}">Question Paper Setter (Internal)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Question Paper Setter (External)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examining Answer Scripts<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Third Examination of Scripts<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">
-                   Class Test
-                   <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Laboratory Exam(Teachers)
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Laboratory Exam (Lab Attendant & Lab Technician)<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Question Typing & Publishing<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examination Duty (Teachers<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Examination Duty (Stuff)
-
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Tabulation
-                  <span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Scrutinize<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Verification of Results<span class="badge badge-danger badge-pill ml-auto">New</span></a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#sidebar_layouts" aria-expanded="false" aria-controls="sidebar_layouts">
+              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                 <span class="menu-title">Exam Committee Billing</span>
-                <i class="mdi mdi-chevron-down menu-arrow"></i>
               </a>
-              <div class="collapse" id="sidebar_layouts">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">Add New</a>
-                  </li>
-                  
-                </ul>
-              </div>
             </li>
-
            <li class="nav-item">
               <a class="nav-link" href="{{URL::to('/alldepartment')}}">
                 <i class="mdi mdi-repeat menu-icon"></i>
@@ -147,7 +69,8 @@
           </ul>
         </nav>
       </div>
-     <div class="container card col-6 ml-center " style="background-color:gainsboro;">
+      <div class="container col-6 card-body"  style=" margin-left:230px; width:960px; height:100%; background:khaki; border: 2px solid">
+     <div class="container card col-6 ml-center " style="background-color:khaki; margin-top: 20px; width: 600px;">
       @if($errors->any())
       @foreach($errors->all() as $error)
       <p class="text-danger">{{$error}}</p>
@@ -156,17 +79,18 @@
       @if(Session::has('msg'))
       <h3 class="text-success">{{session('msg')}}</h3>
       @endif
-      <a href="{{URL::to('/allexamcommitteebilling')}}">
-                                <button class="btn btn-info ">Show All Exam Committee Billing List</button>
+      <a href="{{URL::to('/allexamcommitteebilling')}}" style="margin-top: 2px;" >
+                                <button class="btn btn-info " >Show All Exam Committee Billing List</button>
                               </a>
-                          <h2 class="card-title">Exam Committee Billing Add List</h2>
+                          <h2 class="card-title" style="text-align:center;">Exam Committee Billing Add List</h2>
                           
                           <form class="forms-sample" method="post" action="{{URL::to('examcommitteebilling/strore')}}" enctype="multipart/form-data" style="width:100%; font-size: 15px;">
                             {{csrf_field()}}
                   <tr>
                   <td>
                   <table width="100%" border="0" cellpadding="0" cellspacing="0" class="GrayBlue12">
-                    <tbody><tr>
+                    <tbody>
+                      <tr>
                       
                       <td width="2%" height="35" align="left" valign="middle" class="bdr01">&nbsp;</td>
                       <td width="14%" height="35" align="left" valign="middle" class="bdr01">Department:</td>
@@ -302,7 +226,10 @@
                                   <option value="18">2030</option>
                                 </select>
                               </div>
-                               
+                              <div class="form-group">
+                            <label for="versityname">Varsity Name:</label>
+                           <input type="text" name="versityname" id="versityname" class="form-control" placeholder="varsity name">
+                            </div>
                                
                               <div class="form-group">
                                   <label for="exampleInputEmail1">Exam Start Date</label>
@@ -327,6 +254,7 @@
                             </div>
                           </form>
                       </div>
+                    </div>
   <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
   <script src="{{asset('node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>

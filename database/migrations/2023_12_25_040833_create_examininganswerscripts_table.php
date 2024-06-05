@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('examininganswerscripts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->BigInteger('noscript');
-            $table->unsignedBigInteger('internal_id'); // Foreign key column
-            $table->unsignedBigInteger('external_id');
+            $table->unsignedBigInteger('internal_id');
+            $table->unsignedBigInteger('external_id'); // Foreign key column
             $table->unsignedBigInteger('cous_id');
             $table->unsignedBigInteger('exam_id');
+            $table->foreign('external_id')->references('id')->on('questionpapersetterexternals')->onDelete('cascade');
             $table->foreign('internal_id')->references('id')->on('questionpaperinternals')->onDelete('cascade');
            // $table->integer('deg_id'); // Foreign key column
-            $table->foreign('external_id')->references('id')->on('questionpapersetterexternals')->onDelete('cascade');
             $table->foreign('cous_id')->references('id')->on('courses')->onDelete('cascade');
             $table->foreign('exam_id')->references('id')->on('exambillings')->onDelete('cascade');
             $table->timestamps();

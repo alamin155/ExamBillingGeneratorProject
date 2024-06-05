@@ -14,24 +14,21 @@
       {
         e.preventDefault();
         let internal=$('#internal').val();
-        let external = $('#external').val();
-        let cous = $('#cous').val();
-        let exam = $('#exam').val();
-        let noscript = $('#noscript').val();
-
-        
-        
-        
+        let external=$('#external').val();
+        let cous=$('#cous').val();
+        let exam=$('#exam').val();
+        let noscript=$('#noscript').val();
+        //console.log(name+designation+address+mobile+email+bankname+bankaccount+status);
         $.ajax({
           url:"{{route('add.examininganswerscript')}}",
           method:'post',
-          data:{internal:internal,external:external,cous:cous,exam:exam,noscript:noscript},
+          data:{internal:internal,external:external,cous:cous,exam:exam,noscript:noscript,},
           success:function(res){
             if(res.statu=='success'){
               $('#addModal').modal('hide');
               $('#addexamininganswerscriptForm')[0].reset();
               $('.table').load(location.href+' .table');
-              Command: toastr["success"]("Examiningnswerscript Add Successfully!","success")
+              Command: toastr["success"]("Examining Answerscript Add Successfully!","success")
 
                toastr.options = {
               "closeButton": false,
@@ -63,50 +60,57 @@
         });        
       })
       //Show the update External Teacher
-      $(document).on('click','.update_questionpapersetterexternal_form',function(){
+      $(document).on('click','.update_examininganswerscript_form',function(){
         let id= $(this).data('id');
-        let serial= $(this).data('serial');
-        let cous= $(this).data('cous');
-        let quantity= $(this).data('quantity');
         let designation= $(this).data('designation');
         let department= $(this).data('department');
         let address= $(this).data('address');
-        let tech = $(this).data('tech');
-        $('select[name="tech"]').val(tech);
+
+        let edesignation= $(this).data('edesignation');
+        let edepartment= $(this).data('edepartment');
+        let eaddress= $(this).data('eaddress');
+
+        let internal = $(this).data('internal');
+        let external = $(this).data('external');
+        let cous= $(this).data('cous');
+        let noscript= $(this).data('noscript');
+        $('select[name="internal"]').val(internal);
+        $('select[name="external"]').val(external);
         $('select[name="cous"]').val(cous);
         $('#up_id').val(id);
-        $('#up_serial').val(serial);
-        $('#up_quantity').val(quantity);
         $('#up_designation').val(designation);
         $('#up_department').val(department);
         $('#up_address').val(address);
+        $('#up_edesignation').val(edesignation);
+        $('#up_edepartment').val(edepartment);
+        $('#up_eaddress').val(eaddress);
+
+        $('#up_noscript').val(noscript);
       });
 
       // update External teacher
-      $(document).on('click','.update_questionpapersetterexternal',function(e)
+      $(document).on('click','.update_examininganswerscript',function(e)
       {
         e.preventDefault();
         let up_id = $('#up_id').val();
-        let up_serial = $('#up_serial').val();
+        
+        let up_internal=$('#up_internal').val();
+        let up_external=$('#up_external').val();
         let up_cous = $('#up_cous').val();
-        let up_quantity = $('#up_quantity').val();
-        let up_designation = $('#up_designation').val();
-        let up_department = $('#up_department').val();
-        let up_address = $('#up_address').val();
-        let up_tech=$('#up_tech').val();
+        let up_noscript = $('#up_noscript').val();
         //console.log(name+designation+address+mobile+email+bankname+bankaccount+status);
         $.ajax({
-          url:"{{route('update.questionpapersetterexternal')}}",
+          url:"{{route('update.examininganswerscript')}}",
           method:'post',
-          data:{up_id:up_id,up_serial:up_serial,up_quantity:up_quantity,up_cous:up_cous,up_designation:up_designation,up_department:up_department,up_address:up_address,up_tech:up_tech},
+          data:{up_id:up_id,up_internal:up_internal,up_external:up_external,up_cous:up_cous,up_noscript:up_noscript,},
           success:function(res){
            // $('select[name="depart"]').val(res.data.up_depart);
             if(res.statu=='success'){
               $('#updateModal').modal('hide');
               
-              $('#updatequestionpapersetterexternalForm')[0].reset();
+              $('#updateexamininganswerscriptForm')[0].reset();
               $('.table').load(location.href+' .table');
-              Command: toastr["success"]("Question Paper Setter External Update Successfully!","success")
+              Command: toastr["success"]("Examining Answerscript Update Successfully!","success")
 
                toastr.options = {
               "closeButton": false,
@@ -139,13 +143,13 @@
         });        
       })
       
-      //delete Question Paper Setter Internal
+      //delete external teacher
       $(document).on('click','.delete_examininganswerscript',function(e)
       {
         e.preventDefault();
         let examininganswerscript_id = $(this).data('id');
         
-        if(confirm('Are you sure to delete Question Paper Setter External')){
+        if(confirm('Are you sure to delete Examining Answerscript!')){
           $.ajax({
           url:"{{route('delete.examininganswerscript')}}",
           method:'post',
@@ -154,7 +158,7 @@
             if(res.statu=='success'){
 
               $('.table').load(location.href+' .table');
-              Command: toastr["success"]("Question Paper Setter External Deleted Successfully!","success")
+              Command: toastr["success"]("Examining Answerscript Deleted Successfully!","success")
 
                toastr.options = {
               "closeButton": false,
@@ -185,6 +189,7 @@
         
       })
       //pp
+
   
     });
   </script>

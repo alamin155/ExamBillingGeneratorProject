@@ -8,6 +8,7 @@ use App\Models\Courses;
 use App\Models\Questionpapersetterexternal;
 use App\Models\Examininganswerscript;
 use App\Models\Examcommitteebilling;
+use App\Models\Teacher;
 use DB;
 use Session;
 session_start();
@@ -20,6 +21,7 @@ class questionpapersetterexternalController extends Controller
     {
         $data=Questionpapersetterexternal::where('exam_id',$id)->orderBy('cous_id','asc')->paginate(10);
         $etechs=Externalteacher::orderBy('id','asc')->get();
+        $etechs=Teacher::where('teacher_type','2')->orderBy('id','asc')->get();
         $couse=Courses::orderBy('id','asc')->get();
         $exams=Examcommitteebilling::where('id',$id)->get();
         return view('admin.questionpapersetterexternal.index',['data'=>$data,'etechs'=>$etechs,'couse'=>$couse,'exams'=>$exams,'id'=>$id]);
@@ -38,18 +40,12 @@ class questionpapersetterexternalController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate(
-            [
-            'designation'=>'required',
-            'department'=>'required',
-            'address'=>'required',
-        ]
-    );
+        $request->validate([
+        'tech' => 'required|unique:questionpapersetterexternals,tech_id,NULL,id,cous_id,' . $request->cous,
+        'exam' => 'required',
+       ]);
         $data=new Questionpapersetterexternal();
-        $data->designation=$request->designation;
-        $data->department=$request->department;
-        $data->address=$request->address;
-        $data->etech_id =$request->tech;
+        $data->tech_id =$request->tech;
         $data->cous_id =$request->cous;
         $data->exam_id =$request->exam;
         $data->save();
@@ -79,19 +75,10 @@ class questionpapersetterexternalController extends Controller
      */
     public function update(Request $request)
     {
-        $request->validate(
-            [
-            'up_designation'=>'required',
-            'up_department'=>'required',
-            'up_address'=>'required',
-        ]
-    );
+        
 
         Questionpapersetterexternal::where('id',$request->up_id,)->update([
-        'designation'=>$request->up_designation,
-        'department'=>$request->up_department,
-        'address'=>$request->up_address,
-        'etech_id' =>$request->up_tech,
+        'tech_id' =>$request->up_tech,
         'cous_id' =>$request->up_cous,
 
         ]);

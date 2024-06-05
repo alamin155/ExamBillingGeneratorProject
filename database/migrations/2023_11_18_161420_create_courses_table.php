@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('course_credit');
             $table->string('course_type');
             $table->integer('course_status');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

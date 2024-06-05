@@ -8,7 +8,7 @@ use App\Models\Department;
 use App\Models\Teacher;
 use App\Models\Examcommitteebilling;
 use App\Models\Externalteacher;
-
+use App\Models\Staff;
 class Department extends Model
 {
     use HasFactory;
@@ -26,5 +26,9 @@ class Department extends Model
     public function Examcommitteebilling()
     {
         return $this->hasMany(Examcommitteebilling::class,'dept_id');
+    }
+    public function staff()
+    {
+        return $this->hasMany(Staff::class,'dept_id','id');
     }
 }

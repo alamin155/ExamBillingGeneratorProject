@@ -4,15 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Degree;
+use App\Models\Committee;
+use Auth;
 
 class degreeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    private function getMyBling() {
+    $data = Degree::orderBy('id', 'asc')
+        ->where('created_by', Auth::user()->id)
+        ->pluck('id'); // Use pluck() to get only the 'id' column
+
+    $data2 = Committee::select('committees.exam_id')
+        ->join('teachers', 'committees.tech_id', '=', 'teachers.id')
+        ->where('teachers.email', Auth::user()->email)
+        ->pluck('committees.exam_id'); // Use pluck() to get only the 'exam_id' column
+
+    return array_merge($data->toArray(), $data2->toArray()); // Merge both arrays
+}
     public function index()
     {
-        $data=Degree::orderBy('id','asc')->get();
+        $ids = $this->getMyBling(); // Retrieve IDs from the method
+    //Session::put('ids', $ids); // Store the IDs in the session variable without quotes around 'ids'
+
+        $data = Degree::whereIn('id', $ids)->orderBy('id', 'asc')->get();
         return view('admin.degree.index',['data'=>$data]);
     }
 
@@ -40,6 +57,7 @@ class degreeController extends Controller
         $data->degree_name=$request->degree_name;
         $data->degree_description=$request->degree_description;
         $data->degree_status=$request->degree_status;
+        $data->created_by=Auth::user()->id;
         $data->save();
         
         return redirect('degree/create')->with('msg','Degree created Successfuly!');

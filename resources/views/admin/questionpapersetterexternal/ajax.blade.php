@@ -15,15 +15,12 @@
         e.preventDefault();
         let cous=$('#cous').val();
         let tech=$('#tech').val();
-        let designation = $('#designation').val();
-        let department = $('#department').val();
-        let address = $('#address').val();
         let exam = $('#exam').val();
         //console.log(name+designation+address+mobile+email+bankname+bankaccount+status);
         $.ajax({
           url:"{{route('add.questionpapersetterexternal')}}",
           method:'post',
-          data:{designation:designation,department:department,address:address,tech:tech,cous:cous,exam:exam,},
+          data:{tech:tech,cous:cous,exam:exam,},
           success:function(res){
             if(res.statu=='success'){
               $('#addModal').modal('hide');

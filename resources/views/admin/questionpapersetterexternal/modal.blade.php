@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" style="margin-top: 60px;">
   <form method="post" action=""  id="addquestionpapersetterexternalForm">
    @csrf
   <div class="modal-dialog">
@@ -25,7 +25,7 @@
     <select class="form-control"  name="tech" id="tech">
     <option>--Select Teacher--</option>
    @foreach($etechs as $tech)
-  <option  data-item_des="{{$tech->designation}}" data-item_dep="{{$tech->department->department_name}}" data-item_add="{{$tech->address}}" value="{{$tech->id}}">{{$tech->name}} </option>
+  <option  data-item_des="{{$tech->teacher_designation}}" data-item_dep="{{$tech->department->department_name}}" data-item_add="{{$tech->teacher_address}}" value="{{$tech->id}}">{{$tech->teacher_name}} </option>
     @endforeach
     </select>
     </div>

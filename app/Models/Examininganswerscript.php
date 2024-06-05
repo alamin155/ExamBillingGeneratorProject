@@ -8,14 +8,13 @@ use App\Models\Questionpaperinternal;
 use App\Models\Questionpapersetterexternal;
 use App\Models\Courses;
 use App\Models\Examininganswerscript;
+use App\Models\Examcommitteebilling;
 
 class Examininganswerscript extends Model
 {
     use HasFactory;
     protected $table="examininganswerscripts";
     protected $primaryKey="id";
-     protected $fillable = [
-        'cous_id','exam_id','internal_id','external_id','noscript'];
     public function questionpaperinternal()
     {
         return $this->belongsTo(Questionpaperinternal::class, 'internal_id');
@@ -27,6 +26,10 @@ class Examininganswerscript extends Model
     public function course()
     {
         return $this->belongsTo(Courses::class,'cous_id');
+    }
+    public function examcommitteebilling()
+    {
+        return $this->belongsTo(Examcommitteebilling::class,'exam_id');
     }
 
 
