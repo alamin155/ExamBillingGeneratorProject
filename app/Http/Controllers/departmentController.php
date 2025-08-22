@@ -5,37 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Committee;
-use Auth;
 
 class departmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    private function getMyBling() {
-    $data = Department::orderBy('id', 'asc')
-        ->where('created_by', Auth::user()->id)
-        ->pluck('id'); // Use pluck() to get only the 'id' column
-
-    $data2 = Committee::select('committees.exam_id')
-        ->join('teachers', 'committees.tech_id', '=', 'teachers.id')
-        ->where('teachers.email', Auth::user()->email)
-        ->pluck('committees.exam_id'); // Use pluck() to get only the 'exam_id' column
-
-    return array_merge($data->toArray(), $data2->toArray()); // Merge both arrays
-}
     public function index()
     {
-        $ids = $this->getMyBling(); // Retrieve IDs from the method
-    //Session::put('ids', $ids); // Store the IDs in the session variable without quotes around 'ids'
-
-        $data = Department::whereIn('id', $ids)->orderBy('id', 'asc')->get();
+        $data=Department::orderBy('id','asc')->get();
         return view('admin.department.index',['data'=>$data]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
+    public function index1()
+    {
+        $data=Department::orderBy('id','asc')->get();
+        return view('admin.department.index1',['data'=>$data]);
+    }
+
     public function create()
     {
         $data=Department::orderBy('id','asc')->get();
@@ -56,7 +46,6 @@ class departmentController extends Controller
         $data=new Department();
         $data->department_name=$request->department_name;
         $data->department_status=$request->department_status;
-        $data->created_by=Auth::user()->id;
         $data->save();
         
         return redirect('department/create')->with('msg','Department created Successfuly!');
@@ -106,4 +95,21 @@ class departmentController extends Controller
         Department::where('id',$id)->delete();
         return redirect('/alldepartment')->with('msg','Department Remove Successfuly!');
     }
+    public function searchDepartment(Request $request)
+{
+    $data = Department::where('department_name', 'like', '%' . $request->search_string . '%')
+        ->orderBy('id', 'asc')
+        ->get(); // Fetch the results
+    
+    if($data->count() >= 1){
+        return view('admin.department.search', ['data' => $data]);
+    }
+    else{
+        return response()->json([
+            'status' => 'nothing_found',
+        ]);
+    }
+}
+
+    
 }

@@ -18,28 +18,29 @@
 </head>
 <body>
     <div class="flex justify-center">
-                    <font size="1px" color="blue" >
-                    <marquee>Exam Biling System Management</marquee>
+                    <font size="3px" color="blue" >
+                    <marquee>An Web-based Exam Billing Reporting Management System for JUST with Laravel Framework
+</marquee>
                     </font>
                 </div>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="height:80px;border-radius: 15%;
     background: #FFF;
     padding: 3px;">
+    <div class="flex justify-center" >
+                    <img class="image"style="width:70px;height: 70px;margin-left: 20px;border-radius: 50%;border: 2px solid blue;
+    " src="{{asset('image/Jessore_University_of_Science_&_Technology_logo.jpg')}}">
+                    
+                </div>
             <div class="container">
                 <a class="navbar-brand" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Go To Homepage') }}
+                                        {{ __('Back to Homepage') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" >
                                         @csrf
                                     </form>
-              <div class="flex justify-center" >
-                    <img class="image"style="width:70px;height: 70px;margin-left: 400px;border-radius: 20px;
-    " src="{{asset('image/Jessore_University_of_Science_&_Technology_logo.jpg')}}">
-                    
-                </div>
                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

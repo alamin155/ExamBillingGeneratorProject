@@ -20,6 +20,12 @@ class laboratoryexamteacherController extends Controller
      */
     public function index(string $id)
     {
+        $ids = Session::get('bids', []);
+
+    // Check if the provided ID is in the allowed list
+    if (!in_array($id, $ids)) {
+        return redirect('home')->withErrors('Invalid ID or ID not found in the allowed list.');
+    }
         $couse=Courses::orderBy('id','asc')->get();
         $data=Laboratoryexamteacher::where('exam_id',$id)->orderBy('cous_id','asc')
         ->get();
@@ -43,9 +49,9 @@ class laboratoryexamteacherController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'tech' => 'required|unique:laboratoryexamteachers,tech_id,NULL,id,exam_id,' . $request->exam,
-        'cous' => 'required',
-        'exam' => 'required',
+        //'tech' => 'required|unique:laboratoryexamteachers,tech_id,NULL,id,exam_id,' . $request->exam,
+        //'cous' => 'required',
+        //'exam' => 'required',
         'numberofday' => 'required',
         'student' => 'required',
        ]);

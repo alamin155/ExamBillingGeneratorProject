@@ -15,62 +15,30 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
+  <style type="text/css">
+    footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
+}
+footer p{
+  color: white;
+}
+footer p a {
+  color: white;
+}
+#mySidebar{
+  border: 4px solid #A8D08D;
+}
+.menu-title{
+  color: #FFFFFF;
+  font-size: 16px;
+}
+  </style>
 <body>
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:225px; font-size:13px;" id="mySidebar">
- <ul class="nav">
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                <span class="menu-title">Exam Committee Billing</span>
-              </a>
-            </li>
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldepartment')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Department List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/addteacher')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Teacher List</span>
-              </a>
-            </li>
-
-           <!--forms start-->
-          <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldegree')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Degree List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allcourses')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Course List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allstaff')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Staff List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allremark')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Remark List</span>
-              </a>
-            </li>
-            
-            <!--main pages end-->
-           
-            
-          </ul>
-        </nav>
-      </div>
-
-     <div class="container "  style=" margin-left:230px; width:1100px; height:100%; background:khaki; border: 2px solid">
+  @include('nav')
+    <div class="container "  style=" margin-left:255px; width:1080px;background-color:#e7e6e6; border: 2px solid #A8D08D">
       <div class="container col-md-6 card-body" style="background-color: khaki;" >
       @if($errors->any())
       @foreach($errors->all() as $error)
@@ -80,11 +48,10 @@
       @if(Session::has('msg'))
       <h3 class="text-success">{{session('msg')}}</h3>
       @endif
+      <h4 class="card-title" style="text-align: center;">Degree Update List</h4>
       <a href="{{URL::to('/alldegree')}}">
-                                <button class="btn btn-secondary btn-sm">Show All Degree List</button>
+                                <button class="btn btn-primary btn-ml">Show All Degree List</button>
                               </a>
-                          <h3 class="card-title" style="text-align: center;">Degree Update List</h3>
-                          
                           <form class="forms-sample" method="post" action="{{URL::to('update_degree/'.$data->id)}}" enctype="multipart/form-data" style="width:100%; font-size: 15px;">
                             @method('put')
                             {{csrf_field()}}
@@ -109,6 +76,11 @@
                             </div>
                           </form>
                       </div>
+                    </div>
+                    <footer style="width: 1080px;margin-left: 255px; margin-top: 2px;">
+  <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
+  <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
+</footer>
 <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
   <script src="{{asset('node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>

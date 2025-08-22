@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('staf_id');
             $table->unsignedBigInteger('cous_id');
             $table->unsignedBigInteger('exam_id');
-            $table->unique(['staf_id', 'cous_id']);
+           // $table->unique(['staf_id', 'cous_id']);
             $table->foreign('staf_id')->references('id')->on('staffs')->onDelete('cascade');
            // $table->integer('deg_id'); // Foreign key column
             $table->foreign('cous_id')->references('id')->on('courses')->onDelete('cascade');

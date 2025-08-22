@@ -69,74 +69,43 @@
       border-radius: 0 25px 0 0;
       background-color: #FFF;
     }
+.menu-title{
+  color: #FFFFFF;
+  font-size: 18px;
+}
+#mySidebar{
+  border: 4px solid #A8D08D;
+}
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
+  width: 1070px;
+  margin-left: 265px;
+}
+footer p{
+  color: white;
+}
+footer p a {
+  color: white;
+}
   </style>
 <body>
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:215px; font-size:14px;" id="mySidebar">
- <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                <span class="menu-title">Exam Committee Billing</span>
-              </a>
-            </li>
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldepartment')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title"> Department List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/addteacher')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Teacher List</span>
-              </a>
-            </li>
-
-           <!--forms start-->
-          <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldegree')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Degree List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allcourses')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Course List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allstaff')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Staff List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allremark')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Remark List</span>
-              </a>
-            </li>
-            
-            <!--main pages end-->
-           
-            
-          </ul>
-        </nav>
-      </div>
-      <div class="container " style=" margin-left:215px; width:1100px; height:100%; background:#F6F7F7; border: 2px solid">
+  @include('usernave')
+      <div class="container " style=" margin-left:265px; width:1070px; background:#e7e6e6;; border: 2px solid #A8D08D">
               
       @if(Session::has('msg'))
       <h2 class="text-danger">{{session('msg')}}</h2>
       @endif
-              <h1 class="" style="text-align:center; color: black;">All Exam Committee Billing List</h1>
-              <div class="" style="width:210px; margin-bottom: 5px;">
-                      <a href="{{URL::to('examcommitteebilling/create')}}"><button  class="btn btn-primary btn-lm ">Add Exam Billing Committee</button></a> 
+              <h1 class="" style="text-align:center;">All Exam Committee Billing List</h1>
+              <div class="" style="width:210px; margin: 15px;">
+                      <a href="{{URL::to('examcommitteebilling/create')}}"><button  class="btn btn-primary btn-lg ">Add Exam Billing Committee</button></a> 
                     </div>
                   <div class="row"> 
                   @if($data)
                   @foreach($data as $d)
-                  <div class="card">
+                  <div class="card" style="margin-bottom: 20px;">
                     <div class="image-content">
                       <span class="overlay"><h4 style="margin-left:35px;">{{$d->versityname}}</h4></span>
                     <div class="card-image"><img class="card-img" >
@@ -276,8 +245,13 @@
                   @endforeach
                   @endif
                  </div>
+               </div>
                 </div>
-              </div>
+  <footer>
+  <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
+  <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
+</footer>
+              
                 
                 
                     

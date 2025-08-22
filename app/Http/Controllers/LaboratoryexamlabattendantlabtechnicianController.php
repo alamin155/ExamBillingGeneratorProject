@@ -16,6 +16,12 @@ class LaboratoryexamlabattendantlabtechnicianController extends Controller
      */
     public function index(string $id)
     {
+        $ids = Session::get('bids', []);
+
+    // Check if the provided ID is in the allowed list
+    if (!in_array($id, $ids)) {
+        return redirect('home')->withErrors('Invalid ID or ID not found in the allowed list.');
+    }
         $data=Laboratoryexamlabattendantlabtechnician::where('exam_id',$id)->orderBy('cous_id','asc')->paginate(10);
         $staffs=Staff::orderBy('id','asc')->get();
         $couse=Courses::orderBy('id','asc')->get();
@@ -29,8 +35,8 @@ class LaboratoryexamlabattendantlabtechnicianController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'staf' => 'required|unique:laboratoryexamlabattendantlabtechnicians,staf_id,NULL,id,exam_id,' . $request->exam,
-        'cous' => 'required',
+      // 'staf' => 'required|unique:laboratoryexamlabattendantlabtechnicians,staf_id,NULL,id,exam_id,' . $request->exam,
+        
         'exam' => 'required',
         'numberofday' => 'required',
        ]);

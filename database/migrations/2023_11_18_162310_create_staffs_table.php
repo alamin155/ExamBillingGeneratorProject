@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('staff_status');
             $table->unsignedBigInteger('dept_id'); // Foreign key column
             $table->foreign('dept_id')->references('id')->on('departments')->onDelete('cascade');
-            $table->integer('created_by');
             $table->timestamps();
         });
     }

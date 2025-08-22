@@ -15,61 +15,30 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
+  <style type="text/css">
+    footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
+}
+footer p{
+  color: white;
+}
+footer p a {
+  color: white;
+}
+#mySidebar{
+  border: 4px solid #A8D08D;
+}
+.menu-title{
+  color: #FFFFFF;
+  font-size: 16px;
+}
+  </style>
 <body>
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:225px; font-size:13px;" id="mySidebar">
- <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                <span class="menu-title">Exam Committee Billing</span>
-              </a>
-            </li>
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldepartment')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Department List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/addteacher')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Teacher List</span>
-              </a>
-            </li>
-
-           <!--forms start-->
-          <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldegree')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Degree List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allcourses')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Course List </span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allstaff')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Staff List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allremark')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Remark List</span>
-              </a>
-            </li>
-            
-            <!--main pages end-->
-           
-            
-          </ul>
-        </nav>
-      </div>
-     <div class="container col-6 card-body"  style=" margin-left:230px; width:960px; height:650px; background:khaki; border: 2px solid">
+  @include('nav')
+     <div class="container col-6 card-body"  style=" margin-left:265px; width:1070px;background-color:#e7e6e6; border: 2px solid #A8D08D">
      <div class="container card col-8 ml-center " style="background-color:khaki; margin-top: 20px;">
       @if($errors->any())
       @foreach($errors->all() as $error)
@@ -80,7 +49,7 @@
       <h3 class="text-success">{{session('msg')}}</h3>
       @endif
       <a href="{{URL::to('/allcourses')}}">
-                                <button class="btn btn-warning btn-sm">Show All Courses List</button>
+                                <button class="btn btn-primary btn-ml">Show All Courses List</button>
                               </a>
                           <h2 class="card-title">Courses Add List</h2>
                           
@@ -125,6 +94,11 @@
                             </div>
                           </form>
                       </div>
+                    </div>
+                    <footer style="width: 1070px; margin-left: 265px;margin-top: 10px;">
+  <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
+  <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
+</footer>
   <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
   <script src="{{asset('node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>

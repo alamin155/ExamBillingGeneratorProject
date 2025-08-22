@@ -13,6 +13,12 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style type="text/css">
     .card{
       margin-top: 10px;
@@ -35,66 +41,75 @@ p{
   transform: scale(1.02);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-    
+  
+ .chirman{
+  clip-path: circle();
+  width: 200px;
+ }   
+ footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
+}
+footer p{
+  color: white;
+}
+footer p a {
+  color: white;
+}
+#mySidebar{
+  border: 4px solid #A8D08D;
+}
+.menu-title{
+  color: #FFFFFF;
+  font-size: 18px;
+}
+.row{
+margin-left:240px; 
+width:1100px; 
+height:100%; 
+background:#F6F7F7; 
+border: 2px solid #A8D08D;
+}
+
+.custom-carousel-btn {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.6); /* semi-transparent background */
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.custom-carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.custom-icon {
+  color: white;
+  font-size: 24px;
+}
+
+/* Optional positioning tweaks */
+.carousel-control-prev {
+  left: 20px;
+}
+
+.carousel-control-next {
+  right: 20px;
+}
   </style>
 <body>
 
-
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:215px; font-size:14px;" id="mySidebar">
- <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                <span class="menu-title">Exam Committee Billing</span>
-              </a>
-            </li>
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldepartment')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title"> Department List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/addteacher')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Teacher List</span>
-              </a>
-            </li>
-
-           <!--forms start-->
-          <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldegree')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Degree List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allcourses')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Course List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allstaff')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Staff List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allremark')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Remark List</span>
-              </a>
-            </li>
-            
-            <!--main pages end-->
-           
-            
-          </ul>
-        </nav>
-
-      </div>
-    <div class="row" style="margin-left: 206px;">
+@include('usernave')
+  
+    <div class="row"style="background-color:#e7e6e6;margin-left: 263px; margin-right: 30px; width: 1070px;">
   <div class="col-sm-12" >
        
   <div class="card-deck">
@@ -103,14 +118,14 @@ p{
       <p>Total Number Of Teacher: {{ count($teachers) }}</p>
     </div>
   </div>
+  <div class="card bg-success">
+    <div class="card-body text-center">
+      <p class="card-text">Total Number Of Stuff: {{ count($staffs) }}</p>
+    </div>
+  </div>
   <div class="card bg-warning">
     <div class="card-body text-center">
       <p class="card-text">Total Number Of Department: {{ count($departments) }}</p>
-    </div>
-  </div>
-  <div class="card bg-success">
-    <div class="card-body text-center">
-      <p class="card-text">Total Number Of Staff: {{ count($staffs) }}</p>
     </div>
   </div>
   <div class="card bg-danger">
@@ -119,26 +134,59 @@ p{
     </div>
   </div>
 </div>
-      <div class="card-body" style="background-color:khaki;">
-        <div class="vcmsg container p-md-5" data-v-c104181a=""><img src="{{asset('image/vc2.jpg')}}" style="width:200px" alt="vc-image" class="vcmsg__img" data-v-c104181a=""> <div class="hdr" data-v-c104181a=""><div class="hdr__msg" data-v-c104181a=""><h1 class="text-uppercase home-title mb-4 py-3 ml-3" data-v-c104181a=""><span data-v-c104181a=""> </span></h1></div></div> <div class="ml-4" data-v-c104181a=""><p class="paragraph mb-4 pb-1" data-v-c104181a="" style="text-align:justify;font-size: 15px;">Jashore University of Science and Technology (JUST) has started a steady journey of reaching a new height of excellence in research and to achieve a unique milestone in promoting new ideas and innovation, and in serving the nation and the global community by creating enlightened and skilled professionals who can meet the challenges of the 21st century fostering the motto of ‘being the employer, not the employee’. In keeping with this purpose, JUST has already been declared a research university that aims at generating and advancing knowledge by cutting-edge research in its state-of-the-art laboratories and in the congenial academic ambience. Apart from these, JUST has international and local collaboration with a wide range of reputed academia and industry.
-<br>
-Our focus is also on promoting intellectual leadership through innovation and outcome-based education, and fostering social commitment through community affiliation. It gives me immense pleasure that the concerted efforts of the faculty members and students both from home and abroad have added feathers in our cap.
-<br>
-In order to achieve the rest of the noble goals and turn our country into the golden Bengal envisioned by the Father of the Nation Bangabandhu Sheikh Mujibur Rahman, we all have to work together relentlessly and wholeheartedly.
-<br>
-<h2>Professor Dr. Md. Anwar Hossain
-</h2>
-Vice Chancellor
-<br>
-Jashore University of Science and Technology
-Jashore, Bangladesh</p> <div data-v-c104181a=""><a href="/vc/speech" class="learn-more"></a></div></div></div>
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+ <!-- <div class="carousel-inner">
+    @php $activeSet = false; @endphp
+    @foreach($teachers as $item)
+        @php
+            $imagePath = public_path('image/' . $item->teacher_image);
+            $hasImage = $item->teacher_image && file_exists($imagePath);
+        @endphp
 
-      </div>
-    </div>
+        @if($hasImage)
+            <div class="carousel-item {{ !$activeSet ? 'active' : '' }}">
+                <img src="{{ asset('image/' . $item->teacher_image) }}"
+                     class="d-block w-100"
+                     style="height: 400px; border-radius: 90%; margin:5px"
+                     alt="{{ $item->teacher_name ?? 'Teacher Image' }}">
+                
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ $item->teacher_name }} ({{ $item->teacher_designation }})</h5>
+                </div>
+            </div>
+            @php $activeSet = true; @endphp
+        @endif
+    @endforeach
   </div>
+-->
+  <!-- Controls -->
+  <!-- Prev Button -->
+  <!--
+<button class="carousel-control-prev custom-carousel-btn" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+  <span class="custom-icon" aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
+  <span class="visually-hidden">Previous</span>
+</button>
+-->
+
+<!-- Next Button -->
+<!--
+<button class="carousel-control-next custom-carousel-btn" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+  <span class="custom-icon" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
+  <span class="visually-hidden">Next</span>
+</button>
+-->
+
+<img src="{{ asset('image/We beli.png') }}"
+                     class="d-block w-100"
+                     style="height: 400px;">
+</div>
+<footer>
+  <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
+  <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
+</footer>
 </div>
       
-
  <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
   <script src="{{asset('node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>

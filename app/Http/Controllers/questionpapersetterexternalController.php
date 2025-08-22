@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Externalteacher;
 use App\Models\Courses;
 use App\Models\Questionpapersetterexternal;
 use App\Models\Examininganswerscript;
@@ -19,8 +18,13 @@ class questionpapersetterexternalController extends Controller
      */
     public function index(string $id)
     {
+        $ids = Session::get('bids', []);
+
+    // Check if the provided ID is in the allowed list
+    if (!in_array($id, $ids)) {
+        return redirect('home')->withErrors('Invalid ID or ID not found in the allowed list.');
+    }
         $data=Questionpapersetterexternal::where('exam_id',$id)->orderBy('cous_id','asc')->paginate(10);
-        $etechs=Externalteacher::orderBy('id','asc')->get();
         $etechs=Teacher::where('teacher_type','2')->orderBy('id','asc')->get();
         $couse=Courses::orderBy('id','asc')->get();
         $exams=Examcommitteebilling::where('id',$id)->get();

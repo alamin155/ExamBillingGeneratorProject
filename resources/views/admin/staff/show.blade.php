@@ -19,107 +19,134 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <style type="text/css">
+.card{
+      border-radius: 25px;
+      background-color: #FFF;
+      width: 330px;
+      margin-left:300px ;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.8s ease;
+    }
+    .card-content {
+      padding: 20px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+    .card-image{
+    position:relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background: #FFF;
+    padding: 3px;
+    margin-left:80px;
+  }
+  .card-image .card-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius:50%;
+    border: 4px solid #4070F4;
+  }
+  .image-content,
+  .card-content{
+      padding: 10px 14px;
+    }
+  .image-content{
+      position: relative;
+      row-gap: 5px;
+    }
+    .overlay{
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #4070F4;
+      border-radius: 25px 25px 0 25px;
+    }
+     .overlay::before,
+    .overlay::after{
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: -40px;
+      height: 40px;
+      width: 40px;
+      background-color: #4070F4;
+    }
+    .overlay::after{
+      border-radius: 0 25px 0 0;
+      background-color: #FFF;
+    }
+
+    footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
+}
+footer p{
+  color: white;
+}
+footer p a {
+  color: white;
+}
+#mySidebar{
+  border: 4px solid #A8D08D;
+}
+.menu-title{
+  color: #FFFFFF;
+  font-size: 17px;
+}
+  </style>
 <body>
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:225px; font-size:13px;" id="mySidebar">
- <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                <span class="menu-title">Exam Committee Billing</span>
-              </a>
-            </li>
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldepartment')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title"> Department List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/addteacher')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Teacher List</span>
-              </a>
-            </li>
-
-           <!--forms start-->
-          <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldegree')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Degree List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allcourses')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Course List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allstaff')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Staff List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allremark')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Remark List</span>
-              </a>
-            </li>
-            
-            <!--main pages end-->
-           
-            
-          </ul>
-        </nav>
-      </div>
-
-              <div class="container col-6 card-body"  style=" margin-left:230px; width:1080px; height:650px; background:khaki; border: 2px solid">
-     <div class="container card col-9 ml-center " style="background-color:khaki; margin-top: 20px;">
-
-              
-              <h2 class="card-title" style="text-align:center;">Only One Stuff Info</h2>
-              <div class="card-title" style="width:1000px">
-                      <a href="{{URL::to('/allstaff')}}"><button  class="btn btn-primary btn-sm deleteStudentBtn">Show All Staff List</button></a> 
+  @include('nav')
+  <div class="container "  style=" margin-left:265px; width:1065px;background-color:#e7e6e6; border: 2px solid #A8D08D">
+    <h2 style="text-align:center;">Only One Staff Info</h2>
+     <div class="card-title" style="width:1000px;margin: 20px;">
+ <a href="{{URL::to('/allstaff')}}"><button  class="btn btn-success btn-ml deleteStudentBtn">Show All Staff List</button></a> 
+ </div>
+   <div class="row"> 
+                  @if($data)          
+                  <div class="card">
+                    <div class="image-content">
+                      <span class="overlay"></span>
+                    <div class="card-image"><img src="{{asset('image/'.$data->staff_image)}}" class="card-img" >
                     </div>
-
-                  <table class="table  table-bordereed" style="border:2px; width:650px ;">
-                    <thead >
-                      <tr >
-                          
-                          <th>Staff Name</th>
-                          <th>Staff Designation</th>
-                          <th>Staff Address</th>
-                          <th>Staff Image</th>
-                          <th>Staff Description</th>
-                          <th>Staff Department</th>
-                          <th>Staff Status</th>
-                          <th>Created Time</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                
-                      <tr>
-                          <td>{{$data->staff_name}}</td>
-                          <td>{{$data->staff_designation}}</td>
-                          <td>{{$data->staff_address}}</td>
-                          <td><img src="{{asset('image/'.$data->staff_image)}}" height="80" width="100" style="border-radius:50%;"></td>
-                          <td>{{$data->staff_description}}</td>
-                          <td>{{$data->department->department_name}}</td>
-                          <td>
-                            @if($data->staff_status==1) Active @else Inactive @endif</td>
+                  </div>
+                    <div class="card-content"><h4>Staff Name: {{$data->staff_name}}</h4>
+                   <h4>Designation: {{$data->staff_designation}}</h4>
+                   <h4>Address: {{$data->staff_address}}</h4>
+                   <h5>Department: {{$data->department->department_name}}</h5>
+                   <h4>Description: {{$data->staff_description}}</h4>
+                   <h4>Status:
+                            @if($data->staff_status==1) Active @else Inactive @endif
                             
-                          </td>
-                          <td>{{$data->created_at}}</td>
-                          
-
-                      </tr>
-                      
-                    
-                    
-                    </tbody>
-                  </table>
+                            <div class="form-check form-switch">
+                            @if($data->staff_status==1)
+                            <input type="checkbox" class="form-check-input" id="flexSwitchCheckChecked" checked>
+                            @elseif($data->staff_status==2)
+                            <input type="checkbox" class="form-check-input" id="flexSwitchCheckDefault">
+                          </div>
+                            @endif
+                           </h4>
+                   <h5>Created Time:{{$data->created_at}}</h5>
+                    </div>
+                  </div>
+                  @endif
+                 </div>
                 </div>
+                </div>
+              <footer style="width: 1065px;margin-left: 265px;">
+  <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
+  <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
+</footer>
 <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
   <script src="{{asset('node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>

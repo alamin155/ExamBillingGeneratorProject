@@ -3,7 +3,7 @@
 @section('content')
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
+<title></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css" integrity="sha512-hwwdtOTYkQwW2sedIsbuP1h0mWeJe/hFOfsvNKpRB3CkRxq8EW7QMheec1Sgd8prYxGm1OM9OZcGW7/GUud5Fw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -69,70 +69,38 @@
       border-radius: 0 25px 0 0;
       background-color: #FFF;
     }
+    footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
+}
+footer p{
+  color: white;
+}
+footer p a {
+  color: white;
+}
+#mySidebar{
+  border: 4px solid #A8D08D;
+}
+.menu-title{
+  color: #FFFFFF;
+  font-size: 18px;
+}
   </style>
 <body>
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:210px; font-size:13px;" id="mySidebar">
- <ul class="nav">
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                <span class="menu-title">Exam Committee Billing</span>
-              </a>
-            </li>
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldepartment')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title"> Department List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/addteacher')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Teacher List</span>
-              </a>
-            </li>
-
-           <!--forms start-->
-          <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldegree')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Degree List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allcourses')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Course List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allstaff')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Staff List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allremark')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Remark List</span>
-              </a>
-            </li>
-            
-            <!--main pages end-->
-           
-            
-          </ul>
-        </nav>
-      </div>
-      <div class="container "  style=" margin-left:212px; width:1100px; height:100%; background:#F4F7F7; border: 2px solid">
+  @include('nav')
+      <div class="container "  style=" margin-left:263px; width:1070px;background-color:#e7e6e6; border: 2px solid #A8D08D">
       <div class="container col-md-13 card-body" style="width:1090px" >
               
       @if(Session::has('msg'))
       <h2 class="text-danger">{{session('msg')}}</h2>
       @endif
-              <h2 class="card-title" style="text-align: center;">Courses All List</h2>
+              
+              <h1 class="card-title" style="text-align: center;color: blue;">Total Number Of Courses:  {{ count($data) }}</h1>
               <div class="card-title">
-                      <a href="{{URL::to('courses/create')}}"><button  class="btn btn-primary btn-lm deleteStudentBtn">Add New Courses</button></a> 
+                      <a href="{{URL::to('courses/create')}}"><button  class="btn btn-primary btn-lg deleteStudentBtn">Add New Courses</button></a> 
                     </div>
 
                   
@@ -176,6 +144,10 @@
                  </div>
                 </div>
               </div>
+              <footer style="width: 1070px;margin-left: 263px;">
+  <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
+  <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
+</footer>
                 
                     
  <script src="node_modules/jquery/dist/jquery.min.js"></script>

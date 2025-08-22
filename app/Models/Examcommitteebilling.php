@@ -24,7 +24,14 @@ use App\Models\Questiontypingpublishing;
 use App\Models\Scrutinize;
 use App\Models\Tabulation;
 use App\Models\Verificantionofresult;
-use App\Models\Prepared;
+use App\Models\Oralexamination;
+use App\Models\Supervisiongraduate;
+use App\Models\Supervisionpostgraduate;
+use App\Models\Supervisionmphilphd;
+use App\Models\Thesisevaluation;
+use App\Models\Presentation;
+use App\Models\Teacher;
+use App\Models\Rateofremunerationforexaminationwork;
 class Examcommitteebilling extends Model
 {
     use HasFactory;
@@ -49,7 +56,7 @@ class Examcommitteebilling extends Model
     }
     public function questionpaperinternal()
     {
-        return $this->hasMany(Questionpaperinternal::class,'exam_id');
+        return $this->hasOne(Questionpaperinternal::class,'exam_id');
     }
     public function questionpapersetterexternal()
     {
@@ -91,6 +98,34 @@ class Examcommitteebilling extends Model
     {
         return $this->hasMany(Scrutinize::class,'exam_id');
     }
+    public function oralexamination()
+    {
+        return $this->hasMany(Oralexamination::class,'exam_id');
+    }
+    public function supervisiongraduate()
+    {
+        return $this->hasMany(Supervisiongraduate::class,'exam_id');
+    }
+    public function supervisionpostgraduate()
+    {
+        return $this->hasMany(Supervisionpostgraduate::class,'exam_id');
+    }
+    public function supervisionmphilphd()
+    {
+        return $this->hasMany(Supervisionmphilphd::class,'exam_id');
+    }
+    public function thesisevaluation()
+    {
+        return $this->hasMany(Thesisevaluation::class,'exam_id');
+    }
+    public function presentation()
+    {
+        return $this->hasMany(Presentation::class,'exam_id');
+    }
+     public function rateofremunerationforexaminationwork()
+    {
+        return $this->hasMany(Rateofremunerationforexaminationwork::class,'exam_id');
+    }
     public function tabulation()
     {
         return $this->hasMany(Tabulation::class,'exam_id');
@@ -99,8 +134,5 @@ class Examcommitteebilling extends Model
     {
         return $this->hasMany(Verificantionofresult::class,'exam_id');
     }
-    public function prepared()
-    {
-        return $this->hasMany(Prepared::class,'exam_id');
-    }
+
 }

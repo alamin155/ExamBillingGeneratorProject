@@ -17,6 +17,7 @@ class Committee extends Model
     {
         return $this->belongsTo(Teacher::class,'tech_id');
     }
+    
     public function remark()
     {
         return $this->belongsTo(Remark::class,'remk_id');

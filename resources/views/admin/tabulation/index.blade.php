@@ -9,11 +9,6 @@
   <title>Student Enrollment</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
-
-  
-  <!-- endinject -->
-  <!-- plugin css for this page -->
-  
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
   <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
@@ -27,68 +22,37 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
+  <style type="text/css">
+    footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
+}
+footer p{
+  color: white;
+}
+footer p a {
+  color: white;
+}
+#mySidebar{
+  border: 4px solid #A8D08D;
+}
+.menu-title{
+  color: #FFFFFF;
+  font-size: 17px;
+}
+  </style>
 <body>
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:250px; font-size:14px;" id="mySidebar">
- <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                <span class="menu-title">Exam Committee Billing</span>
-              </a>
-            </li>
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldepartment')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Show All Departments</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/addteacher')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Show All Teachers</span>
-              </a>
-            </li>
-
-           <!--forms start-->
-          <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldegree')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Add new Degrees</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allcourses')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Add new Courses </span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allstaff')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Add All new Staffs</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allremark')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Add New Remarks</span>
-              </a>
-            </li>
-            
-            <!--main pages end-->
-           
-            
-          </ul>
-        </nav>
-      </div>
-     <div class="container col-6 card-body" style=" margin-left:270px; width:960px; height:650px; background:khaki; border: 2px solid">
+  @include('usernave')
+     <div class="container col-6 card-body" style=" margin-left:267px; width:1055px;background-color:#e7e6e6; border: 2px solid #A8D08D">
       <div class="col-md-14 card-body" style="width:960px">
-        <h2 class="my-2 text-center">Tabulations</h2>
+        <h2 class="my-2 text-center">All Tabulations List</h2>
           <a href="" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#addModal">Add New Tabulations</a>
           @foreach($exams as $d)
               <a href="{{url('examcommitteebilling/'.$d->id.'/show')}} " class="btn btn-success my-2">Goto Back</a>
               @endforeach
-      <div class="data-table col-md-10" style="width:956px">
+      <div class="data-table col-md-10" style="width:1050px">
             <table class="table table-bordered" style="border: 2px;">
                         <thead>
                          <tr>
@@ -102,7 +66,7 @@
                          @foreach($data as $key=>$d)
                       <tr> 
                        <th>{{$key+1}}</th>
-                       <td>{{$d->teacher->teacher_name}},{{$d->teacher->teacher_designation}},{{$d->teacher->department->department_name}},{{$d->teacher->teacher_address}}</td>
+                       <td>{{$d->teacher->teacher_name}},{{$d->teacher->teacher_designation}},Dept. of {{$d->teacher->department->department_name}},{{$d->teacher->teacher_address}}</td>
                        <td>{{$d->numberofstudent}}</td>
                        <td>
                       <a href="#" class="btn btn-primary update_tabulation_form" 
@@ -125,16 +89,16 @@
                    </table>
                   
               </div>
-
+                 <footer style="width: 1050px;">
+  <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
+  <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
+</footer>
             </div>
           </div>
           <div class="row">
             @yield('content')
           </div>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <!-- partial -->
       </div>
       <!-- row-offcanvas ends -->
     

@@ -19,6 +19,12 @@ use App\Models\Verificantionofresult;
 use App\Models\laboratoryexamteacher;
 use App\Models\classtest;
 use App\Models\thirdexaminationscript;
+use App\Models\Oralexamination;
+use App\Models\Supervisiongraduate;
+use App\Models\Supervisionpostgraduate;
+use App\Models\Supervisionmphilphd;
+use App\Models\Thesisevaluation;
+use App\Models\Presentation;
 class Teacher extends Model
 {
     use HasFactory;
@@ -59,6 +65,30 @@ class Teacher extends Model
     public function scrutinize()
     {
         return $this->hasMany(Scrutinize::class,'tech_id');
+    }
+    public function oralexamination()
+    {
+        return $this->hasMany(Oralexamination::class,'tech_id');
+    }
+    public function supervisiongraduate()
+    {
+        return $this->hasMany(Supervisiongraduate::class,'tech_id');
+    }
+    public function supervisionpostgraduate()
+    {
+        return $this->hasMany(Supervisionpostgraduate::class,'tech_id');
+    }
+    public function supervisionmphilphd()
+    {
+        return $this->hasMany(Supervisionmphilphd::class,'tech_id');
+    }
+    public function thesisevaluation()
+    {
+        return $this->hasMany(Thesisevaluation::class,'tech_id');
+    }
+    public function presentation ()
+    {
+        return $this->hasMany(Presentation::class,'tech_id');
     }
     public function tabulation()
     {

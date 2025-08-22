@@ -3,9 +3,9 @@
 @section('content')
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
+<title></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css" integrity="sha512-hwwdtOTYkQwW2sedIsbuP1h0mWeJe/hFOfsvNKpRB3CkRxq8EW7QMheec1Sgd8prYxGm1OM9OZcGW7/GUud5Fw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -19,72 +19,43 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <style type="text/css">
+    footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
+}
+footer p{
+  color: white;
+}
+footer p a {
+  color: white;
+}
+#mySidebar{
+  border: 4px solid #A8D08D;
+}
+.menu-title{
+  color: #FFFFFF;
+  font-size: 18px;
+}
+  </style>
 
 <body>
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:215px; font-size:14px;" id="mySidebar">
- <ul class="nav">
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                <span class="menu-title">Exam Committee Billing</span>
-              </a>
-            </li>
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldepartment')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title"> Department List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/addteacher')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Teacher List</span>
-              </a>
-            </li>
-
-           <!--forms start-->
-          <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldegree')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Degree List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allcourses')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Course List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allstaff')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Staff List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allremark')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Remark List</span>
-              </a>
-            </li>
-            
-            <!--main pages end-->
-           
-            
-          </ul>
-        </nav>
-      </div>
-    <div class="container card"  style=" margin-left:230px; width:960px; height:650px; background:khaki; border: 2px solid">
+   @include('nav')
+    <div class="container card"  style=" margin-left:265px; width:1065px;  background-color:#e7e6e6; border: 2px solid #A8D08D">
     <div class="container ">
        @if(Session::has('msg'))
       <h2 class="text-danger">{{session('msg')}}</h2>
       @endif
-              <h1 class="card-title" style="text-align: center;">Department All List</h1>
-              <div class="card-title">
-                      <a href="{{URL::to('department/create')}}"><button  class="btn btn-success btn-sm deleteStudentBtn">Create New Department</button></a> 
-                    </div>
+              <h1 class="card-title" style="text-align: center;">Total Number Of Department:  {{ count($data) }}</h1>
 
-                  <table class="table table-bordered " style="border: 2px;width:960px;">
+              <div class="card-title">
+                      <a href="{{URL::to('department/create')}}"><button  class="btn btn-primary btn-lg deleteStudentBtn">Create New Department</button></a> 
+                    </div>
+<input type="text" name="search" id="search" class="mb-3 form-control" placeholder="Deparment Search Here....">
+                  <div class="table-data">                  
+                    <table class="table table-bordered " style="border: 2px;width:1060px;">
                     <thead >
                       <tr >
                           
@@ -127,11 +98,16 @@
                       </tr>
                       @endforeach
                       @endif
-                    
                     </tbody>
                   </table>
+                 
                 </div>
                 </div>
+                </div>
+                <footer style="width:1065px;margin-left: 265px;" >
+  <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
+  <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
+</footer>
                     
  <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
@@ -162,32 +138,35 @@
   <!-- Custom js for this page-->
   <script src="js/dashboard_1.js"></script>
   <script src="{{asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
-  <script type="text/javascript">
-    $(document).on("click","#delete",function(e)){
-    e.preventDefault();
-    var link=$(this).atrr("href");
-    Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-})
-  .then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire({
-      title: "Deleted!",
-      text: "Your file has been deleted.",
-      icon: "success"
-    });
-  }
-});
   
+   <script type="text/javascript">
+    
+    // Search functionality with AJAX
+    $(document).on('keyup', '#search', function(e) {
+        e.preventDefault(); // Prevent form submission on enter key
+        let search_string = $(this).val(); // Get the current input value
 
-  </script>
-     
+        $.ajax({
+            url: "{{route('search.department')}}", // URL to send the request
+            method: 'GET', // Use GET method
+            data: { search_string: search_string }, // Data to send in the request
+            success: function(res) {
+                if (res.status === 'nothing_found') {
+                    $('.table-data').html('<span class="text-danger">Nothing found</span>');
+                } else {
+                    $('.table-data').html(res); // Update table data with the response
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error occurred: ", error); // Log any error
+            }
+        });
+    });
+</script>
+
+
+
+
 </body>
 </html>
 @endsection

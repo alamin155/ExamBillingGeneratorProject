@@ -18,6 +18,12 @@ class thirdexaminationscriptController extends Controller
      */
     public function index(string $id)
     {
+        $ids = Session::get('bids', []);
+
+    // Check if the provided ID is in the allowed list
+    if (!in_array($id, $ids)) {
+        return redirect('home')->withErrors('Invalid ID or ID not found in the allowed list.');
+    }
         $data=thirdexaminationscript::where('exam_id',$id)->orderBy('cous_id','asc')->paginate(10);
        /**
         * fix the table name to teachers

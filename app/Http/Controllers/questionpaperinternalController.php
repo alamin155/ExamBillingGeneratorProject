@@ -18,6 +18,12 @@ class questionpaperinternalController extends Controller
      */
     public function index(string $id)
     {
+        $ids = Session::get('bids', []);
+
+    // Check if the provided ID is in the allowed list
+    if (!in_array($id, $ids)) {
+        return redirect('home')->withErrors('Invalid ID or ID not found in the allowed list.');
+    }
         $data=Questionpaperinternal::where('exam_id',$id)->orderBy('cous_id','asc')->paginate(10);
         $techs=Teacher::where('teacher_type','1')->orderBy('id','asc')->get();
         $couse=Courses::orderBy('id','asc')->get();
@@ -39,7 +45,8 @@ class questionpaperinternalController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'tech' => 'required|unique:questionpaperinternals,tech_id,NULL,id,cous_id,' . $request->cous,
+       // 'tech' => 'required|unique:questionpaperinternals,tech_id,NULL,id,cous_id,' . $request->cous,
+        //'cous'=>'required',
         'exam' => 'required',
        ]);
         $data=new Questionpaperinternal();

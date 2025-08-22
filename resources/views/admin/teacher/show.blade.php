@@ -19,103 +19,134 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <style type="text/css">
+   .card{
+      margin-bottom: 40px;
+      border-radius: 25px;
+      background-color: #FFFFFF;
+      width: 330px;
+      margin-left:10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     transition: all 0.3s ease;
+    }
+    .card-content {
+    padding: 20px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+    .card-image{
+    position:relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    padding: 3px;
+    margin-left:80px;
+  }
+  .card-image .card-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius:50%;
+    border: 4px solid #4070F4;
+  }
+  .image-content,
+  .card-content{
+      padding: 10px 14px;
+    }
+  .image-content{
+      position: relative;
+      row-gap: 5px;
+    }
+    .overlay{
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #4070F4;
+      border-radius: 25px 25px 0 25px;
+    }
+     .overlay::before,
+    .overlay::after{
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: -40px;
+      height: 40px;
+      width: 40px;
+      background-color: #4070F4;
+    }
+    .overlay::after{
+      border-radius: 0 25px 0 0;
+      background-color: #FFFFFF;
+    }
+
+    footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
+}
+footer p{
+  color: white;
+}
+footer p a {
+  color: white;
+}
+#mySidebar{
+  border: 4px solid #A8D08D;
+}
+.menu-title{
+  color: #FFFFFF;
+  font-size: 16px;
+}
+  </style>
 <body>
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:225px; font-size:13px;" id="mySidebar">
- <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                <span class="menu-title">Exam Committee Billing</span>
-              </a>
-            </li>
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldepartment')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title"> Department List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/addteacher')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Teacher List</span>
-              </a>
-            </li>
-
-           <!--forms start-->
-          <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldegree')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Degree List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allcourses')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Course List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allstaff')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Staff List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allremark')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Remark List</span>
-              </a>
-            </li>
-            
-            <!--main pages end-->
-           
-            
-          </ul>
-        </nav>
-      </div>
-              <div class="container col-6 card-body"  style=" margin-left:230px; width:1120px; height:560px; background:khaki; border:2px solid">
-             <div class="container " style="background-color:khaki; margin-top:20px;">
-              <h2 class="card-title" style="text-align:center;">One Teacher Information</h2>
-              <div class="card-title">
-                      <a href="{{URL::to('/addteacher')}}"><button  class="btn btn-primary btn-sm deleteStudentBtn" style="size: 30px;">Show all Teacher List</button></a> 
+  @include('nav')
+  <div class="container col-6 card-body"  style=" margin-left:260px; width:1070px; background-color:#e7e6e6; border: 2px solid #A8D08D">
+    <h3 style="text-align: center;">Only One Teacher Info</h3>
+    <div class="card-title" style="margin:20px;">
+<a href="{{URL::to('/addteacher')}}"><button  class="btn btn-success btn-ml deleteStudentBtn" style="size: 30px;">Show all Teacher List</button></a> 
+</div> 
+              <div class="row" style="margin-left:300px;"> 
+                  @if($data)
+                  <div class="card" >
+                    <div class="image-content">
+                      <span class="overlay"></span>
+                    <div class="card-image"><img src="{{asset('image/'.$data->teacher_image)}} " class="card-img" >
                     </div>
+                  </div>
+                    <div class="card-content"><h6>Teacher Name: {{$data->teacher_name}}</h6>
+                   <h6>Designation: {{$data->teacher_designation}}</h6>
+                   <h6>Address: {{$data->teacher_address}}</h6>
+                   <h6>Department: {{$data->department->department_name}}</h6>
+                   <h6>Mobile Number: {{$data->mobile}}</h6>
+                   <h6>Email: {{$data->email}}</h6>
+                   <h6>Bank Account: {{$data->bankaccount}}</h6>
+                   <h6>Bank Name: {{$data->bankname}}</h6>
+                   <h6>Bank Received No:{{$data->receivedno}}</h6>
+                   <h6>Branch Name:{{$data->Branchname}}</h6>
+                   <h5>Teacher_type: @if($data->teacher_type == 1 ) 
+                            Internal 
+                            @elseif($d->teacher_type == 2) 
+                            External
+                        
+                            @endif </h5>
+                    </div>
+                  </div>
 
-                  <table  class="table  table-bordereed" style="border:2px;">
-                    <thead >
-                      <tr >
-                          
-                          <th>Name</th>
-                          <th>Designation</th>
-                          <th>Address</th>
-                          <th>Image</th>
-                          <th>Type</th>
-                          <th>Department</th>
-                          <th>Mobile</th>
-                          <th>Email</th>
-                          <th>Bankaccount</th>
-                          <th>Bankname</th>
-                          <th>Created Time</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr> 
-                          <td>{{$data->teacher_name}}</td>
-                          <td>{{$data->teacher_designation}}</td>
-                          <td>{{$data->teacher_address}}</td>
-                          <td><img src="{{asset('image/'.$data->teacher_image)}}" height="80" width="100" style="border-radius:50%;"></td>
-                           <td>
-                            @if($data->teacher_type==1) Internal @else External @endif</td>
-                          <td>{{$data->department->department_name}}</td>
-                          <td>{{$data->mobile}}</td>
-                          <td>{{$data->email}}</td>
-                          <td>{{$data->bankaccount}}</td>
-                          <td>{{$data->bankname}}</td>
-                          <td>{{$data->created_at}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  @endif
+                 </div>
                 </div>
-              </div>
+                </div>
+                <footer style="width: 1070px;margin-left: 260px;">
+  <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
+  <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
+</footer>
   <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
   <script src="{{asset('node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>

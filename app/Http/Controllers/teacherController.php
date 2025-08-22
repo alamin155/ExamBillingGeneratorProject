@@ -11,7 +11,6 @@ use App\Models\Courses;
 use App\Models\Examcommitteebilling;
 use App\Models\Committee;
 use DB;
-use Auth;
 use Session;
 session_start();
 
@@ -20,30 +19,19 @@ class teacherController extends Controller
     /**
      * Display a listing of the resource.
      */
-    private function getMyBling() {
-    $data = Teacher::orderBy('id', 'asc')
-        ->where('created_by', Auth::user()->id)
-        ->pluck('id'); // Use pluck() to get only the 'id' column
-
-    $data2 = Committee::select('committees.exam_id')
-        ->join('teachers', 'committees.tech_id', '=', 'teachers.id')
-        ->where('teachers.email', Auth::user()->email)
-        ->pluck('committees.exam_id'); // Use pluck() to get only the 'exam_id' column
-
-    return array_merge($data->toArray(), $data2->toArray()); // Merge both arrays
-}
     public function index()
     {
-        $ids = $this->getMyBling(); // Retrieve IDs from the method
-    //Session::put('ids', $ids); // Store the IDs in the session variable without quotes around 'ids'
-
-        $data = Teacher::whereIn('id', $ids)->orderBy('id', 'asc')->get();
-       // $data=Teacher::orderBy('id','asc')->get();
+       $data=Teacher::orderBy('id','asc')->get();
         return view('admin.teacher.index',['data'=>$data]);
     }
     /**
      * Show the form for creating a new resource.
      */
+     public function index1()
+    {
+       $data=Teacher::orderBy('id','asc')->get();
+        return view('admin.teacher.index1',['data'=>$data]);
+    }
     public function create()
     {
         $data=Department::orderBy('id','desc')->get();
@@ -60,34 +48,64 @@ class teacherController extends Controller
             'teacher_designation'=>'required',
             'teacher_address'=>'required',
             'teacher_type'=>'required',
-            'teacher_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'teacher_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
             'mobile' => ['required', 'numeric', 'digits:11'],
             'email'=>'required',
-            'bankaccount'=>'required',
-            'bankname'=>'required',
-            'receivedno'=>'required',
-            'Branchname'=>'required',
+            'bankaccount'=>'nullable',
+            'bankname'=>'nullable',
+            'receivedno'=>'nullable',
+            'Branchname'=>'nullable',
         ]);
 
-        $photo=$request->file('teacher_image');
-        $renamePhoto = time() . '.' . $photo->getClientOriginalExtension();
-        $dest=public_path('/image');
-        $photo->move($dest,$renamePhoto);
+      //  $photo=$request->file('teacher_image');
+       // $renamePhoto = time() . '.' . $photo->getClientOriginalExtension();
+        //$dest=public_path('/image');
+        //$photo->move($dest,$renamePhoto);
 
         $data=new Teacher();
         $data->teacher_name=$request->teacher_name;
         $data->teacher_designation=$request->teacher_designation;
         $data->teacher_address=$request->teacher_address;
         $data->teacher_type=$request->teacher_type;
-        $data->teacher_image=$renamePhoto;
+        //$data->teacher_image=$renamePhoto;
+         if ($request->hasFile('teacher_image')) {
+    $photo = $request->file('teacher_image');
+    $renamePhoto = time() . '.' . $photo->getClientOriginalExtension();
+    $dest = public_path('/image');
+    $photo->move($dest, $renamePhoto);
+    $data->teacher_image = $renamePhoto;
+} else {
+    $data->teacher_image = 'default.png'; // or default image
+}
         $data->mobile=$request->mobile;
         $data->email=$request->email;
-        $data->bankaccount=$request->bankaccount;
-        $data->bankname=$request->bankname;
-        $data->receivedno=$request->receivedno;
-        $data->Branchname=$request->Branchname;
+        //$data->bankaccount=$request->bankaccount;
+        if ($request->has('bankaccount') && !empty($request->bankaccount)) {
+    $data->bankaccount = $request->bankaccount;
+} else {
+    $data->bankaccount = 'default';  // replace 'default' with your desired default value
+}
+
+        //$data->bankname=$request->bankname;
+if ($request->has('bankname') && !empty($request->bankname)) {
+    $data->bankname = $request->bankname;
+} else {
+    $data->bankname = 'default';  // replace 'default' with your desired default value
+}
+
+       // $data->receivedno=$request->receivedno;
+        if ($request->has('receivedno') && !empty($request->receivedno)) {
+    $data->receivedno = $request->receivedno;
+} else {
+    $data->receivedno = 'default';  // replace 'default' with your desired default value
+}
+        //$data->Branchname=$request->Branchname;
+if ($request->has('Branchname') && !empty($request->Branchname)) {
+    $data->Branchname = $request->Branchname;
+} else {
+    $data->Branchname = 'default';  // replace 'default' with your desired default value
+}
         $data->dept_id =$request->depart;
-        $data->created_by=Auth::user()->id;
         $data->save();
         
         return redirect('teacher/create')->with('msg','Teacher created Successfuly!');
@@ -124,7 +142,7 @@ class teacherController extends Controller
             'teacher_designation'=>'required',
             'teacher_address'=>'required',
             'teacher_type'=>'required',
-            'mobile'=>'required',
+            'mobile' => 'required',
             'email'=>'required',
             'bankaccount'=>'required',
             'bankname'=>'required',
@@ -186,4 +204,21 @@ class teacherController extends Controller
         ]);
         return view('home',['data'=>$data]);
     }
+   public function searchTeacher(Request $request)
+{
+    $data = Teacher::where('teacher_name', 'like', '%' . $request->search_string . '%')
+        ->orderBy('id', 'asc')
+        ->orwhere('teacher_designation', 'like', '%' . $request->search_string . '%')
+        ->get(); // Fetch the results
+    
+    if($data->count() >= 1){
+        return view('admin.teacher.search', ['data' => $data]);
+    }
+    else{
+        return response()->json([
+            'status' => 'nothing_found',
+        ]);
+    }
+}
+
 }

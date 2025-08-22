@@ -5,6 +5,7 @@
 <html>
 <title>W3 CSS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css" integrity="sha512-hwwdtOTYkQwW2sedIsbuP1h0mWeJe/hFOfsvNKpRB3CkRxq8EW7QMheec1Sgd8prYxGm1OM9OZcGW7/GUud5Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
@@ -80,106 +81,77 @@
       border-radius: 0 25px 0 0;
       background-color: #FFF;
     }
+    footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
+}
+footer p{
+  color: white;
+}
+footer p a {
+  color: white;
+}
+#mySidebar{
+  border: 4px solid #A8D08D;
+}
+.menu-title{
+  color: #FFFFFF;
+  font-size: 18px;
+}
   </style>
 <body>
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:220px; font-size:14px;" id="mySidebar">
- <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                <span class="menu-title">Exam Committee Billing</span>
-              </a>
-            </li>
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldepartment')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title"> Department List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/addteacher')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Teacher List</span>
-              </a>
-            </li>
-
-           <!--forms start-->
-          <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldegree')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Degree List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allcourses')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Course List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allstaff')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Staff List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allremark')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Remark List</span>
-              </a>
-            </li>
-            
-            <!--main pages end-->
-           
-            
-          </ul>
-        </nav>
-      </div>
-      <div class="container "  style=" margin-left:230px; width:1100px; height:100%; background:khaki; border: 2px solid">
-      <div class="container col-md-13 card-body" style="width:1090px" >
+  @include('nav')
+      <div class="container "  style=" margin-left:265px; width:1070px;background-color:#e7e6e6; border: 2px solid #A8D08D">
+      <div class="container col-md-13 card-body" style="width:1070px" >
               
       @if(Session::has('msg'))
       <h2 class="text-danger">{{session('msg')}}</h2>
       @endif
-              <h1 style="text-align: center;">All Internal and External Teachers List</h1>
+              <h1 style="text-align: center; color:blue;">Number Of Internal Teachers  ({{ count($data->where('teacher_type', '1')) }}) and External Teachers ({{ count($data->where('teacher_type', '2')) }})</h1>
               
   <div class="row">
   <div class="col-sm-4" >
     <div class=" ">
-      <div class="card-body" style="background-color:khaki;">
-        <a href="{{URL::to('teacher/create')}}" class="btn btn-outline-primary btn-lg ">Create New Internal Teacher</a>
+      <div class="card-body">
+        <a href="{{URL::to('teacher/create')}}" class="btn btn-primary btn-lg ">Create New Teachers</a>
       </div>
+      <input type="text" name="search" id="search" class="mb-3 form-control" placeholder="Teacher Search Here...." style="width:1035px;">
     </div>
   </div>
   <div class="col-sm-4">
-    <div class="">
-      <div class="card-body" style="background-color:khaki;">
-        <a href="{{URL::to('/addexternalteacher')}}" class="btn btn-outline-warning btn-lg">Create New External Teacher</a>
-      </div>
-    </div>
-  </div>
-</div>            <div class="row"> 
+  </div>          
+  <div class="table-data">
+    <div class="table">
+           <div class="row"> 
 
                   @if($data)
                   @foreach($data as $d)
                   
-                  <div class="card">
+                  <div class="card" >
                     <div class="image-content">
                       <span class="overlay"></span>
                     <div class="card-image"><img src="{{asset('image/'.$d->teacher_image)}} " class="card-img" >
                     </div>
                   </div>
-                    <div class="card-content"><h4>Teacher Name: {{$d->teacher_name}}</h4>
-                   <h4>Designation: {{$d->teacher_designation}}</h4>
-                   <h4>Address: {{$d->teacher_address}}</h4>
-                   <h5>Department: {{$d->department->department_name}}</h5>
-                   <h4>Mobile Number: {{$d->mobile}}</h4>
-                   <h4>Email: {{$d->email}}</h4>
-                   <h4>Bank Account: {{$d->bankaccount}}</h4>
-                   <h4>Bank Name: {{$d->bankname}}</h4>
-                   <h5>Bank Received No:{{$d->receivedno}}</h5>
-                   <h4>Branch Name:{{$d->Branchname}}</h4>
-                   <td>  
+                    <div class="card-content"><h6>Teacher Name: {{$d->teacher_name}}</h6>
+                   <h6>Designation: {{$d->teacher_designation}}</h6>
+                   <h6>Address: {{$d->teacher_address}}</h6>
+                   <h6>Department of: {{$d->department->department_name}}</h6>
+                   <h6>Mobile Number: {{$d->mobile}}</h6>
+                   <h6>Email: {{$d->email}}</h6>
+                   <h6>Bank Account: {{$d->bankaccount}}</h6>
+                   <h6>Bank Name: {{$d->bankname}}</h6>
+                   <h6>Bank Received No:{{$d->receivedno}}</h6>
+                   <h6>Branch Name:{{$d->Branchname}}</h6>
+                   <h5>Teacher_type: @if($d->teacher_type == 1 ) 
+                            Internal 
+                            @elseif($d->teacher_type == 2) 
+                            External
+                        
+                            @endif </h5>
+                            <td>  
                             <a href="{{url('teacher/'.$d->id.'/show')}}"><button  class="btn btn-primary btn-sm" id="delete" onclick="confirmation(event)">Show</button></a> 
                           </td>
                           <td>
@@ -196,7 +168,14 @@
                  </div>
                 </div>
                 </div>
+                </div>
               </div>
+            </div>
+  <footer style="width: 1070px;margin-left: 255px;">
+  <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
+  <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
+</footer>
+              
 
   <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
@@ -227,30 +206,30 @@
   <!-- Custom js for this page-->
   <script src="{{asset('js/dashboard_1.js')}}"></script>
   <script type="text/javascript">
-    $(document).on("click","#delete",function(e)){
-    e.preventDefault();
-    var link=$(this).atrr("href");
-    Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-})
-  .then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire({
-      title: "Deleted!",
-      text: "Your file has been deleted.",
-      icon: "success"
-    });
-  }
-});
-  
+    
+    // Search functionality with AJAX
+    $(document).on('keyup', '#search', function(e) {
+        e.preventDefault(); // Prevent form submission on enter key
+        let search_string = $(this).val(); // Get the current input value
 
-  </script>
+        $.ajax({
+            url: "{{route('search.teacher')}}", // URL to send the request
+            method: 'GET', // Use GET method
+            data: { search_string: search_string }, // Data to send in the request
+            success: function(res) {
+                if (res.status === 'nothing_found') {
+                    $('.table-data').html('<span class="text-danger">Nothing found</span>');
+                } else {
+                    $('.table-data').html(res); // Update table data with the response
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error occurred: ", error); // Log any error
+            }
+        });
+    });
+</script>
+
      
 </body>
 </html>

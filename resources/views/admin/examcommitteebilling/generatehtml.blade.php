@@ -520,61 +520,63 @@ Exam End: {{$d->exam_end_date}} </h6></div>
                     @endforeach  
       </tbody>
       </table>
-      </div>
       <div class="" style="margin-left:50px; margin-top: 30px;">
         <h5><u>Prepared By</u></h5>
-         @foreach($prepareds as $key=>$d)
-         <p>{{$d->name}}</br>
-         {{$d->designation}}</br>
-         @if($d->Examcommitteebilling->year == 1 ) 
-                            1st Year
-                            @elseif($d->Examcommitteebilling->year == 2) 
-                            2nd Year
-                            @elseif($d->Examcommitteebilling->year == 3) 
-                            3rd Year
-                            @elseif($d->Examcommitteebilling->year == 4) 
-                            4th Year
+        @foreach($prepareds as $key=>$d)
+        <p>({{$d->teacher->teacher_name}})</br>Chairman</br>Examination Committee </br>
+        @endforeach
+         @foreach($exambillings as $key=>$d)
+         @if($d->year == 1 ) 
+                            1<sup>st</sup> Year
+                            @elseif($d->year == 2) 
+                            2<sup>nd</sup> Year
+                            @elseif($d->year == 3) 
+                            3<sup>rd</sup> Year
+                            @elseif($d->year == 4) 
+                            4<sup>th</sup> Year
                             @else 
-                            5th Year
-                            @endif @if($d->Examcommitteebilling->semester == 1 ) 
-                            1st semester
-                            @elseif($d->Examcommitteebilling->semester == 2) 
-                            2nd semester
-                            @elseif($d->Examcommitteebilling->semester == 3) 
-                            3rd semester
-                            @elseif($d->Examcommitteebilling->semester == 4) 
-                            4th semester
+                            5<sup>th</sup> Year
+                            @endif @if($d->semester == 1 ) 
+                            1<sup>st</sup> semester
+                            @elseif($d->semester == 2) 
+                            2<sup>nd</sup> semester
+                            @elseif($d->semester == 3) 
+                            3<sup>rd</sup> semester
+                            @elseif($d->semester == 4) 
+                            4<sup>th</sup> semester
                             @else 
-                            5th semester
-                            @endif Admission Session:@if($d->Examcommitteebilling->addmission_year == 1 ) 
+                            5<sup>th</sup> semester
+                            @endif Admission Session:@if($d->addmission_year == 1 ) 
                             2012-2013 
-                            @elseif($d->Examcommitteebilling->addmission_year == 2) 
+                            @elseif($d->addmission_year == 2) 
                             2013-2014 
-                            @elseif($d->Examcommitteebilling->addmission_year == 3) 
+                            @elseif($d->addmission_year == 3) 
                             2014-2015
-                            @elseif($d->Examcommitteebilling->addmission_year == 4) 
+                            @elseif($d->addmission_year == 4) 
                             2015-2016 
-                            @elseif($d->Examcommitteebilling->addmission_year == 5) 
+                            @elseif($d->addmission_year == 5) 
                             2016-2017
-                            @elseif($d->Examcommitteebilling->addmission_year == 6) 
+                            @elseif($d->addmission_year == 6) 
                             2017-2018
-                            @elseif($d->Examcommitteebilling->addmission_year == 7) 
+                            @elseif($d->addmission_year == 7) 
                             2018-2019
-                            @elseif($d->Examcommitteebilling->addmission_year == 8) 
+                            @elseif($d->addmission_year == 8) 
                             2019-2020
-                            @elseif($d->Examcommitteebilling->addmission_year == 9) 
+                            @elseif($d->addmission_year == 9) 
                             2020-2021
-                            @elseif($d->Examcommitteebilling->addmission_year == 10) 
+                            @elseif($d->addmission_year == 10) 
                             2021-2022
-                            @elseif($d->Examcommitteebilling->addmission_year == 11) 
+                            @elseif($d->addmission_year == 11) 
                             2022-2023  
-                            @elseif($d->Examcommitteebilling->addmission_year == 12) 
+                            @elseif($d->addmission_year == 12) 
                             2023-2024   
                             @else 
                             2024-2025
-                            @endif</br>{{$d->Examcommitteebilling->department->department_name}}</br> {{$d->Examcommitteebilling->versityname}}</p>
+                            @endif</br>Department of {{$d->department->department_name}}</br> {{$d->versityname}}</p>
          @endforeach
       </div>
+      </div>
+      
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>

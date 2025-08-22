@@ -6,34 +6,25 @@ use Illuminate\Http\Request;
 use App\Models\Staff;
 use App\Models\Department;
 use App\Models\Committee;
-use Auth;
+
 
 class staffController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    private function getMyBling() {
-    $data = Staff::orderBy('id', 'asc')
-        ->where('created_by', Auth::user()->id)
-        ->pluck('id'); // Use pluck() to get only the 'id' column
-
-    $data2 = Committee::select('committees.exam_id')
-        ->join('teachers', 'committees.tech_id', '=', 'teachers.id')
-        ->where('teachers.email', Auth::user()->email)
-        ->pluck('committees.exam_id'); // Use pluck() to get only the 'exam_id' column
-
-    return array_merge($data->toArray(), $data2->toArray()); // Merge both arrays
-}
     public function index()
     {
-        $ids = $this->getMyBling(); // Retrieve IDs from the method
-    //Session::put('ids', $ids); // Store the IDs in the session variable without quotes around 'ids'
-
-        $data = Staff::whereIn('id', $ids)->orderBy('id', 'asc')->get();
+        $data=Staff::orderBy('id','asc')->get();
         return view('admin.staff.index',['data'=>$data]);
     }
 
+
+    public function index1()
+    {
+        $data=Staff::orderBy('id','asc')->get();
+        return view('admin.staff.index1',['data'=>$data]);
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -54,25 +45,33 @@ class staffController extends Controller
             'staff_designation'=>'required',
             'staff_address'=>'required',
             'staff_description'=>'required',
-            'staff_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'staff_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
             'staff_status'=>'required',
             
         ]);
 
-        $photo=$request->file('staff_image');
-        $renamePhoto = time() . '.' . $photo->getClientOriginalExtension();
-        $dest=public_path('/image');
-        $photo->move($dest,$renamePhoto);
+       // $photo=$request->file('staff_image');
+        //$renamePhoto = time() . '.' . $photo->getClientOriginalExtension();
+        //$dest=public_path('/image');
+        //$photo->move($dest,$renamePhoto);
 
         $data=new Staff();
         $data->staff_name=$request->staff_name;
         $data->staff_designation=$request->staff_designation;
         $data->staff_address=$request->staff_address;
         $data->staff_description=$request->staff_description;
-        $data->staff_image=$renamePhoto;
+        //$data->staff_image=$renamePhoto;
+        if ($request->hasFile('staff_image')) {
+    $photo = $request->file('staff_image');
+    $renamePhoto = time() . '.' . $photo->getClientOriginalExtension();
+    $dest = public_path('/image');
+    $photo->move($dest, $renamePhoto);
+    $data->staff_image = $renamePhoto;
+} else {
+    $data->staff_image = 'default.png'; // or default image
+}
         $data->staff_status=$request->staff_status;
         $data->dept_id =$request->depart;
-        $data->created_by=Auth::user()->id;
         $data->save();
         
         return redirect('staff/create')->with('msg','Staff created Successfuly!');

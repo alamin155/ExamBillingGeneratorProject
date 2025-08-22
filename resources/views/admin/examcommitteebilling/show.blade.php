@@ -19,62 +19,36 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style type="text/css">
+  footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
+  margin-top: 20px;
+}
+footer p{
+  color: white;
+}
+footer p a {
+  color: white;
+}
+#mySidebar{
+  border: 4px solid #A8D08D;
+}
+.menu-title{
+  color: #FFFFFF;
+  font-size: 17px;
+}
 
+</style>
   
 <body>
   
-  <div class="w3-sidebar w3-card w3-animate-left" style="background-color:sandybrown; width:225px; font-size:13px;" id="mySidebar">
- <ul class="nav" >
-  <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                <span class="menu-title">Exam Committee Billing</span>
-              </a>
-            </li>
-           <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldepartment')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title"> Department List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/addteacher')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Teacher List</span>
-              </a>
-            </li>
-
-           <!--forms start-->
-          <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/alldegree')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Degree List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allcourses')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Course List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allstaff')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">Staff List</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{URL::to('/allremark')}}">
-                <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Remark List</span>
-              </a>
-            </li> 
-          </ul>
-        </nav>
-      </div>
-      <div class="container " style="text-align: center; margin-left:228px; width:1100px; height:650px; background:#FBFCFC; border: 2px solid">
+  @include('usernave')
+      <div class="container " style="text-align: center; margin-left:265px; width:1075px; background-color:#e7e6e6; border: 2px solid #A8D08D">
   <div class="row row-cols-ml-4 row-cols-md-3 g-4">
-  <div class="col" style="margin-top:30px;" >
+  <div class="col" style="margin-top:30px; " >
     <div class="card">
     <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 30px; width:260px; margin-left: 40px;">
     <a href="{{url('committee/'.$data['id'].'/show')}}" class="btn btn-success">Examination Committee</a>
@@ -94,6 +68,13 @@
       <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 30px;width:260px; margin-left: 40px;">
        <a href="{{url('verificationofresult/'.$data['id'].'/show')}}" class="btn btn-success">Verification of Results Sheet</a>
       </div>
+
+      <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 30px;width:260px; margin-left: 40px;">
+       <a href="{{url('classtest/'.$data['id'].'/show')}}" class="btn btn-success">Class Test</a>
+      </div>
+      <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 30px;width:260px; margin-left: 40px;">
+       <a href="{{url('examinationwork/'.$data['id'].'/show')}}" class="btn btn-success">Rate of Remuneration for Examination Work</a>
+      </div>
     </div>
   </div>
   <div class="col" style="margin-top:30px; background-color: " >
@@ -111,26 +92,44 @@
        <a href="{{url('thirdexaminationscript/'.$data['id'].'/show')}}" class="btn btn-success">Third Examination of Scripts</a>
       </div>
       <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 30px;width:260px; margin-left: 40px;">
-       <a href="{{url('classtest/'.$data['id'].'/show')}}" class="btn btn-success">Class Test</a>
-      </div>
-    </div>
-  </div>
-  <div class="col" style="margin-top:30px; background-color: " >
-    <div class="card h-100">
-      <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 30px;width:260px; margin-left: 40px;">
-       <a href="{{url('laboratoryexamteacher/'.$data['id'].'/show')}}" class="btn btn-success">Laboratory Exam Teachers</a>
-      </div>
-      <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 10px;width:260px; margin-left: 40px;">
-       <a href="{{url('laboratoryexamlabattendantlabtechnician/'.$data['id'].'/show')}}" class="btn btn-success">Laboratory Exam Lab Attendant & Lab Technician</a>
-      </div>
-      <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 30px;width:260px; margin-left: 40px;">
        <a href="{{url('examinationdutyteacher/'.$data['id'].'/show')}}" class="btn btn-success">Examination Duty Teachers</a>
       </div>
       <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 30px;width:260px; margin-left: 40px;">
        <a href="{{url('examinationdutystuff/'.$data['id'].'/show')}}" class="btn btn-success">Examination Duty Stuff</a>
       </div>
       <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 30px;width:260px; margin-left: 40px;">
-       <a href="{{url('prepared/'.$data['id'].'/show')}}" class="btn btn-success">Add Exam Committee Chariman</a>
+       <a href="{{url('laboratoryexamteacher/'.$data['id'].'/show')}}" class="btn btn-success">Laboratory Exam Teachers</a>
+      </div>
+      <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 30px;width:260px; margin-left: 40px;">
+       <a href="{{url('document/'.$data->id.'/show')}}" class="btn btn-success">Semester Final Examination PDF</a>
+      </div>
+    </div>
+  </div>
+  <div class="col" style="margin-top:30px; background-color: " >
+    <div class="card h-100">
+      <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 10px;width:260px; margin-left: 40px;">
+       <a href="{{url('laboratoryexamlabattendantlabtechnician/'.$data['id'].'/show')}}" class="btn btn-success">Laboratory Exam Lab Attendant & Lab Technician</a>
+      </div>
+       <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 10px;width:260px; margin-left: 40px;">
+       <a href="{{url('oralexamination/'.$data['id'].'/show')}}" class="btn btn-success">Oral Examination ( Central Viva)</a>
+      </div>
+       <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 10px;width:260px; margin-left: 40px;">
+       <a href="{{url('supervisiongraduate/'.$data['id'].'/show')}}" class="btn btn-success">Supervision,Thesis/Project/Plant Design(Graduate)</a>
+      </div>
+       <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 10px;width:260px; margin-left: 40px;">
+       <a href="{{url('supervisionpostgraduate/'.$data['id'].'/show')}}" class="btn btn-success">Supervision,Thesis/Project(Post Graduate)</a>
+      </div>
+       <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 10px;width:260px; margin-left: 40px;">
+       <a href="{{url('supervisionmphilphd/'.$data['id'].'/show')}}" class="btn btn-success">Supervision,Thesis/Project(Mphil/PhD)</a>
+      </div>
+       <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 10px;width:260px; margin-left: 40px;">
+       <a href="{{url('thesisevaluation/'.$data['id'].'/show')}}" class="btn btn-success">Thesis Evaluation (Graduate/Post Graduate/Mphil/PhD)</a>
+      </div>
+       <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 10px;width:260px; margin-left: 40px;">
+       <a href="{{url('presentation/'.$data['id'].'/show')}}" class="btn btn-success">Presentation (Graduate/Post Graduate/Mphil/PhD)</a>
+      </div>
+      <div class="card col-ml-6" style="margin-top:20px;margin-bottom: 10px;width:260px; margin-left: 40px;">
+       <a href="{{url('examinationworkpdf/'.$data['id'].'/show')}}" class="btn btn-success">Rate of Remuneration for Examination Work PDF File Download</a>
       </div>
     </div>
   </div>
@@ -138,19 +137,25 @@
   
   <div class="col-mg-15 mt-4">
     <div >
-      <div class="card-body" >
+      <div class="card-body"  >
         <a href="{{URL::to('/allexamcommitteebilling')}}" class="btn btn-success btn-lg">Goto Exam Committee Billing Page</a>
-        <a href="{{url('document/'.$data->id.'/show')}}" class="btn btn-info btn-lg" style="width:300px;m">Document PDF</a>
-        <a href="{{url('download/'.$data->id.'/show')}}" class="btn btn-primary btn-lg" style="width:300px;m">Document Page</a>
+        <a href="{{url('documentfile/'.$data->id.'/show')}}" class="btn btn-danger btn-lg" style="width:200px;m">Word File</a>
+       <!-- <a href="{{url('download/'.$data->id.'/show')}}" class="btn btn-success btn-lg" style="width:200px;m">HTML Page</a>
       </div>
+    -->
+
     </div>
   </div>
+  <footer style="width: 1050px;">
+  <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
+  <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
+</footer>
+  </div>
+
 </div>
+
 </div>
-</div>
-        
-              
-     
+
  <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
   <script src="{{asset('node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>

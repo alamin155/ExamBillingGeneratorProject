@@ -17,6 +17,12 @@ class Moderationcontroller extends Controller
      */
     public function index(string $id)
     {
+        $ids = Session::get('bids', []);
+
+    // Check if the provided ID is in the allowed list
+    if (!in_array($id, $ids)) {
+        return redirect('home')->withErrors('Invalid ID or ID not found in the allowed list.');
+    }
         $data=ModerationModel::where('exam_id',$id)->orderBy('remk_id','asc')->paginate(10);
         //$data=Committee::orderBy('id','asc')->paginate(10);
         $techs=Teacher::orderBy('id','asc')->get();

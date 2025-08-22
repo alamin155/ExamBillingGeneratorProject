@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('tech_id')->references('id')->on('teachers')->onDelete('cascade');
            // $table->integer('deg_id'); // Foreign key column
             $table->foreign('cous_id')->references('id')->on('courses')->onDelete('cascade');
-            $table->foreign('exam_id')->references('id')->on('exambillings')->onDexambillingselete('cascade');
+            $table->foreign('exam_id')->references('id')->on('exambillings')->onDelete('cascade');
             $table->timestamps();
         });
     }

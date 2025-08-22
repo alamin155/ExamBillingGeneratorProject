@@ -15,8 +15,31 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
+  <style type="text/css">
+  .menu-title{
+  color: #FFFFFF;
+  font-size: 17px;
+}
+#mySidebar{
+  border: 4px solid #A8D08D;
+}
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
+  width: 1075px;
+  margin-left: 270px;
+}
+footer p{
+  color: white;
+}
+footer p a {
+  color: white;
+}
+  </style>
 <body>
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:sandybrown; width:225px; font-size:13px;" id="mySidebar">
+  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color:#005D4B; width:270px;" id="mySidebar">
  <ul class="nav">
             <li class="nav-item">
               <a class="nav-link" href="{{URL::to('/allexamcommitteebilling')}}">
@@ -59,7 +82,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{{URL::to('/allremark')}}">
                 <i class="mdi mdi-repeat menu-icon"></i>
-                <span class="menu-title">Remark List</span>
+                <span class="menu-title">Committee Role List</span>
               </a>
             </li>
             
@@ -69,8 +92,8 @@
           </ul>
         </nav>
       </div>
-      <div class="container col-6 card-body"  style=" margin-left:230px; width:960px; height:100%; background:khaki; border: 2px solid">
-     <div class="container card col-6 ml-center " style="background-color:khaki; margin-top: 20px; width: 600px;">
+      <div class="container col-6 card-body"  style=" margin-left:270px; width:1075px; height:100%; background-color:#e7e6e6; border: 2px solid #A8D08D">
+     <div class="container card col-6 ml-center " style="background-color:khaki; margin-top: 20px;margin-bottom: 10px; width: 600px;">
       @if($errors->any())
       @foreach($errors->all() as $error)
       <p class="text-danger">{{$error}}</p>
@@ -80,7 +103,7 @@
       <h3 class="text-success">{{session('msg')}}</h3>
       @endif
       <a href="{{URL::to('/allexamcommitteebilling')}}" style="margin-top: 2px;" >
-                                <button class="btn btn-info " >Show All Exam Committee Billing List</button>
+                                <button class="btn btn-primary " >Show All Exam Committee Billing List</button>
                               </a>
                           <h2 class="card-title" style="text-align:center;">Exam Committee Billing Add List</h2>
                           
@@ -156,45 +179,21 @@
                   <table width="100%" border="0" cellpadding="0" cellspacing="0" class="GrayBlue12">
                     <tbody><tr>
                       <td width="3%" height="35" align="left" valign="middle" class="bdr01">&nbsp;</td>
-                      <td width="14%" height="35" align="left" valign="middle" class="bdr01">Admission Year:</td>
-                      <td width="34%" height="35" align="left" valign="middle" class="bdr01">
-                      <select class="form-control p-input" name="addmission_year">
-                                  <option>--select addmission year--</option>
-                                  <option value="1">2012-2013</option>
-                                  <option value="2">2013-2014</option>
-                                  <option value="3">2014-2015</option>
-                                  <option value="4">2015-2016</option>
-                                  <option value="5">2016-2017</option>
-                                  <option value="6">2017-2018</option>
-                                  <option value="7">2018-2019</option>
-                                  <option value="8">2019-2020</option>
-                                  <option value="9">2020-2021</option>
-                                  <option value="10">2021-2022</option>
-                                  <option value="11">2022-2023</option>
-                                  <option value="12">2023-2024</option>
-                                  <option value="13">2024-2025</option>
-                                </select>
-                      </td>
-                      <td width="2%" height="35" align="left" valign="middle" class="bdr01">&nbsp;</td>
-                      <td width="14%" height="35" align="left" valign="middle" class="bdr01">Academic Year:</td>
-                      <td width="34%" height="35" align="left" valign="middle" class="bdr01">
-                      <select class="form-control p-input" name="academic_year">
-                                  <option>--select academic year--</option>
-                                  <option value="1">2012-2013</option>
-                                  <option value="2">2013-2014</option>
-                                  <option value="3">2014-2015</option>
-                                  <option value="4">2015-2016</option>
-                                  <option value="5">2016-2017</option>
-                                  <option value="6">2017-2018</option>
-                                  <option value="7">2018-2019</option>
-                                  <option value="8">2019-2020</option>
-                                  <option value="9">2020-2021</option>
-                                  <option value="10">2021-2022</option>
-                                  <option value="11">2022-2023</option>
-                                  <option value="12">2023-2024</option>
-                                  <option value="13">2024-2025</option>
-                                </select>
-                      </td>
+                       <td width="14%" height="35" align="left" valign="middle" class="bdr01">Admission Year:</td>
+    <td width="34%" height="35" align="left" valign="middle" class="bdr01">
+      <select class="form-control p-input" name="addmission_year" id="admissionYearSelect">
+        <option>--select admission year--</option>
+      </select>
+    </td>
+    
+    <td width="2%" height="35" align="left" valign="middle" class="bdr01">&nbsp;</td>
+    
+    <td width="14%" height="35" align="left" valign="middle" class="bdr01">Academic Year:</td>
+    <td width="34%" height="35" align="left" valign="middle" class="bdr01">
+      <select class="form-control p-input" name="academic_year" id="academicYearSelect">
+        <option>--select academic year--</option>
+      </select>
+    </td>
                       </tr>
                     </tbody>
                   </table>
@@ -203,29 +202,12 @@
                               
                                
                               <div class="form-group">
-                                <label for="exampleInputPassword1">Exam Year</label>
-                                <select class="form-control p-input" name="exam_year">
-                                  <option>--select Exam year--</option>
-                                  <option value="1">2013</option>
-                                  <option value="2">2014</option>
-                                  <option value="3">2015</option>
-                                  <option value="4">2016</option>
-                                  <option value="5">2017</option>
-                                  <option value="6">2018</option>
-                                  <option value="7">2019</option>
-                                  <option value="8">2020</option>
-                                  <option value="9">2021</option>
-                                  <option value="10">2022</option>
-                                  <option value="11">2023</option>
-                                  <option value="12">2024</option>
-                                  <option value="13">2025</option>
-                                  <option value="14">2026</option>
-                                  <option value="15">2027</option>
-                                  <option value="16">2028</option>
-                                  <option value="17">2029</option>
-                                  <option value="18">2030</option>
-                                </select>
-                              </div>
+  <label for="exampleInputPassword1">Exam Year</label>
+  <select class="form-control p-input" name="exam_year" id="examYearSelect">
+    <option>--select Exam year--</option>
+  </select>
+</div>
+
                               <div class="form-group">
                             <label for="versityname">Varsity Name:</label>
                            <input type="text" name="versityname" id="versityname" class="form-control" placeholder="varsity name">
@@ -255,6 +237,11 @@
                           </form>
                       </div>
                     </div>
+                    <footer>
+  <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
+  <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
+</footer>
+
   <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
   <script src="{{asset('node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
@@ -283,8 +270,27 @@
   <script src="{{asset('js/data-table.js')}}"></script>
   <!-- Custom js for this page-->
   <script src="{{asset('js/dashboard_1.js')}}"></script>
+<script>
+  function populateDropdown(selectId, startYear, endYear, isAcademic=false) {
+    const select = document.getElementById(selectId);
+    const currentYear = new Date().getFullYear();
+    // শেষ year হবে current year
+    const finalYear = Math.min(endYear, currentYear);
 
+    for (let year = startYear; year <= finalYear; year++) {
+      const option = document.createElement('option');
+      option.value = year;
+      option.text = isAcademic ? `${year}-${year + 1}` : year;
+      select.appendChild(option);
+    }
+  }
 
+  // Populate Admission & Academic Year
+  populateDropdown('admissionYearSelect', 2012, new Date().getFullYear(), true);
+  populateDropdown('academicYearSelect', 2012, new Date().getFullYear(), true);
+  // Populate Exam Year only up to current year
+  populateDropdown('examYearSelect', 2013, 2030, false);
+</script>
 </body>
 </html>
 @endsection
