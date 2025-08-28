@@ -47,7 +47,7 @@ class ExaminationdutyteacherController extends Controller
             'examdutycarriedout'=>'required',
             'invigilation'=>'required',
             'hours'=>'required',
-            'tech' => 'required|unique:examinationdutyteachers,tech_id,NULL,id,exam_id,' . $request->exam,
+            //'tech' => 'required|unique:examinationdutyteachers,tech_id,NULL,id,exam_id,' . $request->exam,
             'exam' => 'required',
             
         ]);

@@ -7,7 +7,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="updateModalLabel">Update Question Typing and Publishing</h5>
+        <h5 class="modal-title" id="updateModalLabel">Update Question Typing & Publishing</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -37,15 +37,15 @@
       </div>
       <div class="form-group">
         <label for="numberofquestion">No.of Questions</label>
-        <input type="number" name="up_numberofquestion" id="up_numberofquestion" class="form-control" placeholder="No.of questions">
+        <input type="number" name="up_numberofquestion" id="up_numberofquestion" class="form-control" placeholder="No.of Questions">
       </div>
       <div class="form-group">
-        <label for="numberofpage">No. of Pages</label>
-        <input type="number" name="up_numberofpage" id="up_numberofpage" class="form-control" placeholder="No. of page">
+        <label for="numberofpage">No.of Pages</label>
+        <input type="number" name="up_numberofpage" id="up_numberofpage" class="form-control" placeholder="No.of Pages">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary update_questiontypingpublishing">Update Question Typing and Publishing</button>
+        <button type="button" class="btn btn-primary update_questiontypingpublishing">Update Question Typing & Publishing</button>
       </div>
     </div>
   </div>

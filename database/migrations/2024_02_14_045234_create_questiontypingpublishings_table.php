@@ -13,14 +13,22 @@ return new class extends Migration
     {
         Schema::create('questiontypingpublishings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->BigInteger('numberofquestion');
-            $table->BigInteger('numberofpage');
-            $table->unsignedBigInteger('tech_id');
-            $table->unsignedBigInteger('exam_id');
-            $table->unique(['tech_id', 'exam_id']);
-            $table->foreign('tech_id')->references('id')->on('teachers')->onDelete('cascade');
-           // $table->integer('deg_id'); // Foreign key column
-            $table->foreign('exam_id')->references('id')->on('exambillings')->onDelete('cascade');
+            $table->bigInteger('numberofquestion');
+            $table->bigInteger('numberofpage');
+            $table->unsignedBigInteger('tech_id'); 
+            $table->unsignedBigInteger('exam_id'); // unique() বাদ দিতে হবে
+
+            // Foreign Keys
+            $table->foreign('tech_id')
+                  ->references('id')
+                  ->on('teachers')
+                  ->onDelete('cascade');
+
+            $table->foreign('exam_id')
+                  ->references('id')
+                  ->on('exambillings')
+                  ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

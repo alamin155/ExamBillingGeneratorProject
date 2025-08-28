@@ -6,9 +6,14 @@
 <title>W3.CSS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Student Enrollment</title>
+  <title></title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
+
+  
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
   <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
@@ -42,14 +47,14 @@ footer p a {
   color: #FFFFFF;
   font-size: 17px;
 }
+
   </style>
 <body>
   @include('usernave')
-     <div class="container col-6 card-body" style=" margin-left:267px; width:1055px; background-color:#e7e6e6; border: 2px solid #A8D08D"
->
+     <div class="container col-6 card-body" style=" margin-left:263px; width:1055px; background-color:#e7e6e6; border: 2px solid #A8D08D">
       <div class="col-md-14 card-body" style="width:960px">
-        <h2 class="my-2 text-center" >Question Typing and Publishing List</h2>
-          <a href="" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#addModal">Add New Question Typing and Publishing</a>
+        <h2 class="my-2 text-center">All Question Typing & Publishing List</h2>
+          <a href="" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#addModal">Add New Question Typing & Publishing</a>
           @foreach($exams as $d)
               <a href="{{url('examcommitteebilling/'.$d->id.'/show')}} " class="btn btn-success my-2">Goto Back</a>
               @endforeach
@@ -93,12 +98,13 @@ footer p a {
                    </table>
                   
               </div>
-             <footer style="width: 1050px;">
+            </div>
+            <footer style="width: 1050px;">
   <p>Copyright &copy;2024: Designed By <span>Md. Alamin Gazi</span> <br>
   <a href="md.alamingazi190@gmail.com">md.alamingazi190@gmail.com</a></p>
 </footer>
-            </div>
           </div>
+          
           <div class="row">
             @yield('content')
           </div>
@@ -110,6 +116,7 @@ footer p a {
       <!-- row-offcanvas ends -->
     
 </div>
+
 </div>
                           
   <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>

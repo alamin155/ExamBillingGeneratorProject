@@ -48,7 +48,7 @@ class classtestController extends Controller
             [
             'classtest'=>'required',
             'student'=>'required',
-            'tech' => 'required|unique:classtests,tech_id,NULL,id,exam_id,' . $request->exam,
+           // 'tech' => 'required|unique:classtests,tech_id,NULL,id,exam_id,' . $request->exam,
         'cous' => 'required',
         'exam' => 'required',
         ]

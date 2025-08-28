@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('exam_remuneration_heads', function (Blueprint $table) {
             $table->id();
-            $table->string('secret_key', 50)->unique(); // hidden key, auto-generate
+            $table->integer('secret_key')->unique();
             $table->string('head_name');
             $table->text('description')->nullable();
             $table->string('role', 100)->nullable();

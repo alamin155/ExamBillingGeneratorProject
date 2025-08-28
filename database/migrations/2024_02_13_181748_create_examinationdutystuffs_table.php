@@ -17,7 +17,7 @@ return new class extends Migration
             $table->BigInteger('examdutycarriedout');
             $table->unsignedBigInteger('staf_id');
             $table->unsignedBigInteger('exam_id');
-            $table->unique(['staf_id', 'exam_id']);
+            //$table->unique(['staf_id', 'exam_id']);
             $table->decimal('hours', 8, 2);
             $table->foreign('staf_id')->references('id')->on('staffs')->onDelete('cascade');
            // $table->integer('deg_id'); // Foreign key column

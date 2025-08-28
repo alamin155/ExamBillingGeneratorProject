@@ -57,7 +57,8 @@ class TabulationController extends Controller
         $data->save();
         return response()->json([
             'statu'=>'success',
-        ]);        }
+        ]);        
+    }
 
     /**
      * Display the specified resource.

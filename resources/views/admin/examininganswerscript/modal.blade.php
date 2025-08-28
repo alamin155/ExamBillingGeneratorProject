@@ -26,9 +26,19 @@
      <label for="exampleInputPassword1">Internal Teacher Name:</label>
     <select class="form-control"  name="internal" id="internal">
     <option>--Select Teacher--</option>
-   @foreach($internals as $internal)
-  <option  data-item_des="{{$internal->teacher->teacher_designation}}" data-item_dep="{{$internal->teacher->department->department_name}}" data-item_add="{{$internal->teacher->teacher_address}}" value="{{$internal->id}}">{{$internal->teacher->teacher_name}} </option>
-    @endforeach
+   @php
+    $uniqueInternals = $internals->unique('tech_id');
+@endphp
+
+@foreach($uniqueInternals as $internal)
+    <option  
+        data-item_des="{{ $internal->teacher->teacher_designation }}" 
+        data-item_dep="{{ $internal->teacher->department->department_name }}" 
+        data-item_add="{{ $internal->teacher->teacher_address }}" 
+        value="{{ $internal->id }}">
+        {{ $internal->teacher->teacher_name }}
+    </option>
+@endforeach
     </select>
     </div>
       <div class="form-group">
@@ -49,7 +59,10 @@
      <label for="exampleInputPassword1">Exteranl Teacher Name:</label>
     <select class="form-control"  name="external" id="external">
     <option>--Select Teacher--</option>
-   @foreach($externals as $external)
+    @php
+    $uniqueexternals = $externals->unique('tech_id');
+    @endphp
+   @foreach($uniqueexternals as $external)
   <option  data-item_edes="{{$external->teacher->teacher_designation}}" data-item_edep="{{$external->teacher->department->department_name}}" data-item_eadd="{{$external->teacher->teacher_address}}" value="{{$external->id}}">{{$external->teacher->teacher_name}} </option>
     @endforeach
     </select>

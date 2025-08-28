@@ -29,7 +29,10 @@
       <div class="form-group">
      <label for="exampleInputPassword1">External Teacher Name:</label>
     <select class="form-control p-input" name="internal" id="up_internal">
-      @foreach($internals as $internal)
+    @php
+    $uniqueInternals = $internals->unique('tech_id');
+    @endphp
+      @foreach($uniqueInternals as $internal)
       <option @if($internal->internal_id==$internal->id) selected @endif value="{{$internal->id}}">{{$internal->teacher->teacher_name}}</option>
       @endforeach
                                             
@@ -52,7 +55,10 @@
       <div class="form-group">
      <label for="exampleInputPassword1">Exteranl Teacher Name:</label>
     <select class="form-control p-input" name="external" id="up_external">
-      @foreach($externals as $external)
+      @php
+    $uniqueexternals = $externals->unique('tech_id');
+    @endphp
+      @foreach($uniqueexternals as $external)
       <option @if($external->external_id==$external->id) selected @endif value="{{$external->id}}">{{$external->teacher->teacher_name}}</option>
       @endforeach
                                             
